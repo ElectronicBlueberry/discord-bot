@@ -1,2 +1,2 @@
 # discord-bot
-A bot for a germany public server
+A bot for a german public server
