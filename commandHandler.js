@@ -1,14 +1,16 @@
 var commands = [];
 
-function _findCommandByName(name, element)
+function compareElementName(name, element)
 {
     return element.name === name;
 }
 
 function findCommandByName(name)
 {
-    return commands.find(_findCommandByName.bind(this, name));
+    return commands.find(compareElementName.bind(this, name));
 }
+
+
 
 module.exports = {
     // Add a command object that can later be called by a user
@@ -36,7 +38,7 @@ module.exports = {
         }
 
         // Check for role
-        if (command.role === "" || message.member.roles.find("name", command.role))
+        if (command.role === "" || message.member.roles.find(compareElementName.bind(this, command.role)))
         {
             command.run(message, arguments);
         }
