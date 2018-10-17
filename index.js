@@ -8,7 +8,7 @@ const handler = require("./commandHandler.js");
 require("./commands/testCommand.js");
 
 client.on("ready", async () => {
-    console.log('${client.user.username} ready');
+    console.log(client.user.username +  ' ready');
 });
 
 client.on("message", async (message) => {

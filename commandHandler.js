@@ -14,7 +14,7 @@ module.exports = {
     // Add a command object that can later be called by a user
     addCommand: function (command) {
         commands.push(command);
-        console.log("${command.name} command loaded for role ${command.role}");
+        console.log(command.name + ' command loaded for "' + command.role + '" role');
     },
 
     isCommand: function (message, prefix)
