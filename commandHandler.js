@@ -30,6 +30,11 @@ module.exports = {
 
         let command = findCommandByName(name);
 
+        if (command == undefined)
+        {
+            return;
+        }
+
         // Check for role
         if (command.role === "" || message.member.roles.find("name", command.role))
         {
