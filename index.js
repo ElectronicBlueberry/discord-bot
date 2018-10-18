@@ -7,6 +7,21 @@ const client = new discord.Client();    // Client for communicating with discord
 const handler = require("./commandHandler.js");
 require("./commands/testCommand.js");
 
+// Ping tool timestamp
+var pingTimestamp = 0;
+
+function recievePing(message)
+{
+    pingTimestamp = message.createdTimestamp;
+    message.channel.send("pong");
+}
+
+function sendPing(message)
+{
+    message.channel.send( (message.createdTimestamp - pingTimestamp) + "ms");
+}
+
+// Main bot code
 client.on("ready", async () => {
     console.log(client.user.username +  ' ready');
 });
@@ -14,6 +29,16 @@ client.on("ready", async () => {
 client.on("message", async (message) => {
     if (message.author.bot)
     {
+        if (message.content === "pong")
+        {
+            sendPing(message);
+        }
+        return;
+    }
+
+    if (message.content === config.prefix + "ping")
+    {
+        recievePing(message);
         return;
     }
 
