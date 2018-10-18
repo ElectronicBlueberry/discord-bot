@@ -12,6 +12,11 @@ client.on("ready", async () => {
 });
 
 client.on("message", async (message) => {
+    if (message.author.bot)
+    {
+        return;
+    }
+
     if (handler.isCommand(message, config.prefix))
     {
         handler.runCommand(message);
