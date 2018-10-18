@@ -1,16 +1,10 @@
+const helper = require("./helperFunctions.js");
 var commands = [];
-
-function compareElementName(name, element)
-{
-    return element.name === name;
-}
 
 function findCommandByName(name)
 {
-    return commands.find(compareElementName.bind(this, name));
+    return helper.searchArrayForName(commands, name);
 }
-
-
 
 module.exports = {
     // Add a command object that can later be called by a user
@@ -38,7 +32,7 @@ module.exports = {
         }
 
         // Check for role
-        if (command.role === "" || message.member.roles.find(compareElementName.bind(this, command.role)))
+        if (command.addrole === "" || helper.searchMapForName(message.member.roles, command.role) )
         {
             command.run(message, arguments);
         }
