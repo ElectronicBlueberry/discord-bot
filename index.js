@@ -7,7 +7,7 @@ const client = new discord.Client();    // Client for communicating with discord
 const handler = require("./commandHandler.js");
 require("./commands/testCommand.js");
 
-// Ping tool timestamp
+// Ping Command
 var pingTimestamp = 0;
 
 function recievePing(message)
