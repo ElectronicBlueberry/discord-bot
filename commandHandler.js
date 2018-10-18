@@ -19,9 +19,9 @@ module.exports = {
     },
 
     // Searches for a command and runs it
-    runCommand: function (message)
+    runCommand: function (message, containsPrefix = true)
     {
-        let arguments = message.content.substr(1).split(" ");   // remove prefix and split
+        let arguments = message.content.substr( (containsPrefix) ? 1 : 0 ).split(" ");   // remove prefix and split
         let name = arguments.shift();    // get command name
 
         let command = findCommandByName(name);
