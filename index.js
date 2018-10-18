@@ -42,6 +42,12 @@ client.on("message", async (message) => {
         return;
     }
 
+    if (message.channel.type === "dm")
+    {
+        handler.runCommand(handler.dmCommands, message, "");
+        return;
+    }
+
     if (handler.hasPrefix(message, config.prefix))
     {
         handler.runCommand(handler.channelCommands, message, config.prefix);
