@@ -12,47 +12,47 @@ var pingTimestamp = 0;
 
 function recievePing(message)
 {
-    pingTimestamp = message.createdTimestamp;
-    message.channel.send("pong");
+	pingTimestamp = message.createdTimestamp;
+	message.channel.send("pong");
 }
 
 function sendPing(message)
 {
-    message.channel.send( (message.createdTimestamp - pingTimestamp) + "ms");
+	message.channel.send( (message.createdTimestamp - pingTimestamp) + "ms");
 }
 
 // Main bot code
 client.on("ready", async () => {
-    console.log(client.user.username +  ' ready');
+	console.log(client.user.username +  ' ready');
 });
 
 client.on("message", async (message) => {
-    if (message.author.bot)
-    {
-        if (message.content === "pong")
-        {
-            sendPing(message);
-        }
-        return;
-    }
+	if (message.author.bot)
+	{
+		if (message.content === "pong")
+		{
+			sendPing(message);
+		}
+		return;
+	}
 
-    if (message.content === config.prefix + "ping")
-    {
-        recievePing(message);
-        return;
-    }
+	if (message.content === config.prefix + "ping")
+	{
+		recievePing(message);
+		return;
+	}
 
-    if (message.channel.type === "dm")
-    {
-        handler.runCommand(handler.dmCommands, message, "");
-        return;
-    }
+	if (message.channel.type === "dm")
+	{
+		handler.runCommand(handler.dmCommands, message, "");
+		return;
+	}
 
-    if (handler.hasPrefix(message, config.prefix))
-    {
-        handler.runCommand(handler.channelCommands, message, config.prefix);
-        return;
-    }
+	if (handler.hasPrefix(message, config.prefix))
+	{
+		handler.runCommand(handler.channelCommands, message, config.prefix);
+		return;
+	}
 });
 
 client.login(config.token);
