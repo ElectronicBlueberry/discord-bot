@@ -1,6 +1,6 @@
 const handler = require("../commandHandler.js");
 
-handler.addCommand({
+handler.addCommand( handler.channelCommands, {
     name: "blub",
     role: "",
     run: (message, arguments) =>
@@ -9,7 +9,7 @@ handler.addCommand({
     }
 });
 
-handler.addCommand({
+handler.addCommand( handler.channelCommands, {
     name: "add",
     role: "mathematician",
     run: (message, arguments) =>

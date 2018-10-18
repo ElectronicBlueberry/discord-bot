@@ -1,30 +1,29 @@
 const helper = require("./helperFunctions.js");
-var commands = [];
 
-function findCommandByName(name)
+function findCommandByName(commandArray, name)
 {
-    return helper.searchArrayForName(commands, name);
+    return helper.searchArrayForName(commandArray, name);
 }
 
 module.exports = {
     // Add a command object that can later be called by a user
-    addCommand: function (command) {
-        commands.push(command);
+    addCommand: function (commandArray, command) {
+        commandArray.push(command);
         console.log('"' + command.name + '" command loaded for "' + command.role + '" role');
     },
 
-    isCommand: function (message, prefix)
+    hasPrefix: function (message, prefix)
     {
-        return message.content.charAt(0) === prefix;
+        return message.content.substring(0, prefix.length) === prefix;
     },
 
-    // Searches for a command and runs it
-    runCommand: function (message, containsPrefix = true)
+    // Searches for a command in given array and runs it
+    runCommand: function (commandArray, message, prefix)
     {
-        let arguments = message.content.substr( (containsPrefix) ? 1 : 0 ).split(" ");   // remove prefix and split
+        let arguments = message.content.substr(prefix.length).split(" ");   // remove prefix and split
         let name = arguments.shift();    // get command name
 
-        let command = findCommandByName(name);
+        let command = findCommandByName(commandArray, name);
 
         if (command == undefined)
         {
@@ -36,5 +35,8 @@ module.exports = {
         {
             command.run(message, arguments);
         }
-    }
+    },
+
+    channelCommands: [],
+    dmCommands: []
 };

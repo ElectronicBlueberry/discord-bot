@@ -42,9 +42,10 @@ client.on("message", async (message) => {
         return;
     }
 
-    if (handler.isCommand(message, config.prefix))
+    if (handler.hasPrefix(message, config.prefix))
     {
-        handler.runCommand(message);
+        handler.runCommand(handler.channelCommands, message, config.prefix);
+        return;
     }
 });
 
