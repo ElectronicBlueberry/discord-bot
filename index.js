@@ -65,4 +65,10 @@ client.on("messageReactionAdd", async (messageReaction, user) => {
 	handler.runMessageProcessor(loader.reactionProcessors, messageReaction.message);
 });
 
+client.on("guildMemberAdd", (member) => {
+	if (loader.joinHandler != undefined) {
+		loader.joinHandler.run(member);
+	}
+});
+
 client.login(config.token);
