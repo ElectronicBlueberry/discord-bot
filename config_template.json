@@ -2,5 +2,9 @@
 	"token": "YOUR TOKEN HERE",
 	"prefix": "!",
 	"plugin_folder": "plugins",
-	"plugin_suffix": ".plugin.json"
+	"plugin_suffix": ".plugin.json",
+	"channel_command_blacklist":
+	[
+
+	]
 }

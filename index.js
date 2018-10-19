@@ -51,7 +51,7 @@ client.on("message", async (message) => {
 	}
 
 	// Run Server commands
-	if (handler.hasPrefix(message, config.prefix))
+	if (handler.hasPrefix(message, config.prefix) && config.channel_command_blacklist.indexOf(message.channel.name) > -1)
 	{
 		handler.runCommand(loader.channelCommands, message, config.prefix);
 		return;
