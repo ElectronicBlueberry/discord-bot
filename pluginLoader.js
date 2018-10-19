@@ -1,19 +1,14 @@
 const fs = require('fs');
 const config = require("./config.json");
-const handler = require("./commandHandler.js");
-
-var channelCommands = [];
-var messageProcessors = [];
-var dmCommands = [];
-var reactionProcessors = [];
 
 module.exports = {
 
 	scanPlugins: () => {
-		channelCommands = [];
-		messageProcessors = [];
-		dmCommands = [];
-		reactionProcessors = [];
+		module.exports.channelCommands = [];
+		module.exports.messageProcessors = [];
+		module.exports.dmCommands = [];
+		module.exports.reactionProcessors = [];
+		module.exports.joinHandler = {};
 
 		console.log("Searching for Plugins...");
 
@@ -50,19 +45,23 @@ module.exports = {
 				let script = require('require-reload')(`./${config.plugin_folder}/${parameters.files[a]}`);
 
 				if (script.channelCommands != undefined) {
-					channelCommands = channelCommands.concat(script.channelCommands);
+					module.exports.channelCommands = module.exports.channelCommands.concat(script.channelCommands);
 				}
 
 				if (script.dmCommands != undefined) {
-					dmCommands = dmCommands.concat(script.dmCommands);
+					module.exports.dmCommands = module.exports.dmCommands.concat(script.dmCommands);
 				}
 
 				if (script.messageProcessors != undefined) {
-					messageProcessors = messageProcessors.concat(script.messageProcessors);
+					module.exports.messageProcessors = module.exports.messageProcessors.concat(script.messageProcessors);
 				}
 
 				if (script.dmCommands != undefined) {
-					reactionProcessors = reactionProcessors.concat(script.reactionProcessors);
+					module.exports.reactionProcessors = module.exports.reactionProcessors.concat(script.reactionProcessors);
+				}
+
+				if (script.joinHandler != undefined) {
+					module.exports.joinHandler = script.joinHandler;
 				}
 			}
 		}
@@ -71,11 +70,9 @@ module.exports = {
 		console.log(` ==== Sucessfully loaded ${pluginList.length} Plugins ==== `);
 	},
 
-	// replaces Handler Commands
-	loadCommands: () => {
-		handler.channelCommands = channelCommands;
-		handler.dmCommands = dmCommands;
-		handler.messageProcessors = messageProcessors;
-		handler.reactionProcessors = reactionProcessors;
-	}
+	channelCommands: [],
+	dmCommands: [],
+	messageProcessors: [],
+	reactionProcessors: [],
+	joinHandler: {}
 };

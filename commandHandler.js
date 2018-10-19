@@ -90,10 +90,5 @@ module.exports = {
 		{
 			processor.run(message);
 		}
-	},
-
-	channelCommands: [],
-	dmCommands: [],
-	messageProcessors: [],
-	reactionProcessors: []
+	}
 };

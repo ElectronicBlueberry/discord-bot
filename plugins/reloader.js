@@ -8,9 +8,7 @@ var channelCommands = [{
 		message.channel.send("Lade Plugins neu");
 
 		console.log("  ");
-
 		loader.scanPlugins();
-		loader.loadCommands();
 
 		message.channel.send("Fertig!");
 	}
