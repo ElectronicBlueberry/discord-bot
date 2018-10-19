@@ -1,29 +1,29 @@
 const helper = require("./helperFunctions.js");
 
-// Compare processors whitelist Parameters to find appropriate processor
-function findProcessorByWhitelist (processorArray, channel)
+// Compare objects whitelist Parameters to find appropriate object
+function findByWhitelist (array, channel)
 {
-	for (let i = 0; i < processorArray.length; i++)
+	for (let i = 0; i < array.length; i++)
 	{
-		let whitelist = processorArray[i].whitelist;
+		let whitelist = array[i].whitelist;
 
 		if (whitelist != undefined && helper.searchArray(whitelist, channel))
 		{
-			return processorArray[i];
+			return array[i];
 		}
 	}
 }
 
-// Compare processors blacklist Parameters to find appropriate processor
-function findProcessorByBlacklist (processorArray, channel)
+// Compare objects blacklist Parameters to find appropriate object
+function findByBlacklist (array, channel)
 {
-	for (let i = 0; i < processorArray.length; i++)
+	for (let i = 0; i < array.length; i++)
 	{
-		let blacklist = processorArray[i].blacklist;
+		let blacklist = array[i].blacklist;
 
 		if (blacklist == undefined || !helper.searchArray(blacklist, channel))
 		{
-			return processorArray[i];
+			return array[i];
 		}
 	}
 }
@@ -69,11 +69,11 @@ module.exports = {
 	// Searches for processor to run according to channel
 	runMessageProcessor: function (processorArray, message)
 	{
-		let processor = findProcessorByWhitelist(processorArray, message.channel.name);
+		let processor = findByWhitelist(processorArray, message.channel.name);
 
 		if (processor == undefined)
 		{
-			processor = findProcessorByBlacklist(processorArray, message.channel.name);
+			processor = findByBlacklist(processorArray, message.channel.name);
 		}
 
 		if (processor != undefined)
@@ -85,4 +85,5 @@ module.exports = {
 	channelCommands: [],
 	dmCommands: [],
 	messageProcessors: [],
+	reactionProcessors: []
 };

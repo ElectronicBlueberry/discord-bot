@@ -62,4 +62,8 @@ client.on("message", async (message) => {
 	handler.runMessageProcessor(handler.messageProcessors, message);
 });
 
+client.on("messageReactionAdd", async (messageReaction, user) => {
+	handler.runMessageProcessor(handler.reactionProcessors, messageReaction.message);
+});
+
 client.login(config.token);
