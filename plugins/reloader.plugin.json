@@ -3,6 +3,6 @@
 	"log": "adds '!relead' command for admin role that reloads all plugins",
 	"files":
 	[
-		"plugin-reloader.js"
+		"reloader.js"
 	]
 }
