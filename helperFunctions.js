@@ -19,14 +19,4 @@ module.exports = {
 			}
 		}
 	},
-
-	searchMapForName: function (map, name) {
-		for (var value of map.values())
-		{
-			if (value.name === name)
-			{
-				return value;
-			}
-		}
-	}
 };
