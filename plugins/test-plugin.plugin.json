@@ -1,0 +1,9 @@
+{
+	"name": "Test Plugin",
+	"log": "A few commands to test functionality of bot",
+	"files":
+	[
+		"/test-plugin/testProcessor.js",
+		"/test-plugin/testCommand.js"
+	]
+}

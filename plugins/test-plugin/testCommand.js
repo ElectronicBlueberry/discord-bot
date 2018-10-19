@@ -1,6 +1,6 @@
-const handler = require("../commandHandler.js");
+var channelCommands = [];
 
-handler.addCommand( handler.channelCommands, {
+channelCommands.push({
 	name: "blub",
 	role: "",
 	log: 'test command that simply returns "blaaaa!"',
@@ -10,7 +10,7 @@ handler.addCommand( handler.channelCommands, {
 	}
 });
 
-handler.addCommand( handler.channelCommands, {
+channelCommands.push({
 	name: "add",
 	role: "mathematician",
 	log: 'for "mathematician" role on server messages',
@@ -26,3 +26,7 @@ handler.addCommand( handler.channelCommands, {
 		}
 	}
 });
+
+module.exports = {
+	channelCommands
+};

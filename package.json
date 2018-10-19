@@ -4,7 +4,8 @@
   "description": "A bot for a germany public server",
   "main": "index.js",
   "dependencies": {
-    "discord.js": "^11.4.2"
+    "discord.js": "^11.4.2",
+    "require-reload": "^0.2.2"
   },
   "devDependencies": {},
   "scripts": {

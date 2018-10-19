@@ -49,6 +49,11 @@ module.exports = {
 	// Searches for a command in given array and runs it
 	runCommand: function (commandArray, message, prefix)
 	{
+		if (commandArray == undefined)
+		{
+			return;
+		}
+
 		let arguments = message.content.substr(prefix.length).split(" ");   // remove prefix and split
 		let name = arguments.shift();    // get command name
 
@@ -69,6 +74,11 @@ module.exports = {
 	// Searches for processor to run according to channel
 	runMessageProcessor: function (processorArray, message)
 	{
+		if (processorArray == undefined)
+		{
+			return;
+		}
+
 		let processor = findByWhitelist(processorArray, message.channel.name);
 
 		if (processor == undefined)

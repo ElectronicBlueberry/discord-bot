@@ -1,13 +1,13 @@
 const config = require("./config.json");    // Global bot settings and token
 const discord = require("discord.js");      // framework for discord api
+const pluginLoader = require("./pluginLoader.js");
+const handler = require("./commandHandler.js");
 
 const client = new discord.Client();    // Client for communicating with discord api
 
-// Commands
-const handler = require("./commandHandler.js");
-require("./commands/testCommand.js");
-
-require("./processors/testProcessor.js");
+// Plugins
+pluginLoader.scanPlugins();
+pluginLoader.loadCommands();
 
 // Ping Command
 var pingTimestamp = 0;
