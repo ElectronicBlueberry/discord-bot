@@ -65,7 +65,7 @@ module.exports = {
 		}
 
 		// Check for role
-		if (command.role === "" || helper.searchMapForName(message.member.roles, command.role) )
+		if (command.role === "" || helper.searchMapForName(message.member.roles, command.role))
 		{
 			command.run(message, arguments);
 		}
