@@ -1,5 +1,3 @@
-const helper = require("./helperFunctions.js");
-
 // Compare objects whitelist Parameters to find appropriate object
 function findByWhitelist (array, channel)
 {
@@ -7,7 +5,7 @@ function findByWhitelist (array, channel)
 	{
 		let whitelist = array[i].whitelist;
 
-		if (whitelist != undefined && helper.searchArray(whitelist, channel))
+		if (whitelist != undefined && whitelist.find(c => c === channel))
 		{
 			return array[i];
 		}
@@ -21,7 +19,7 @@ function findByBlacklist (array, channel)
 	{
 		let blacklist = array[i].blacklist;
 
-		if (blacklist == undefined || !helper.searchArray(blacklist, channel))
+		if (blacklist == undefined || !blacklist.find(c => c === channel))
 		{
 			return array[i];
 		}
@@ -57,7 +55,7 @@ module.exports = {
 		let arguments = message.content.substr(prefix.length).split(" ");   // remove prefix and split
 		let name = arguments.shift();    // get command name
 
-		let command = helper.searchArrayForName(commandArray, name);
+		let command = commandArray.find(cmd => cmd.name === name);
 
 		if (command == undefined)
 		{
@@ -65,7 +63,7 @@ module.exports = {
 		}
 
 		// Check for role
-		if (command.role === "" || helper.searchArrayForName(message.member.roles.array(), command.role))
+		if (command.role === "" || message.member.roles.find(role => role.name === command.role))
 		{
 			command.run(message, arguments);
 		}
