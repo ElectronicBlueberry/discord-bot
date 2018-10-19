@@ -10,6 +10,16 @@ module.exports = {
 		}
 	},
 
+	searchArray: function (array, compare) {
+		for (let i = 0; i < array.length; i++)
+		{
+			if (array[i] === compare)
+			{
+				return true;
+			}
+		}
+	},
+
 	searchMapForName: function (map, name) {
 		for (var value of map.values())
 		{

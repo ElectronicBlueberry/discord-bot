@@ -3,6 +3,7 @@ const handler = require("../commandHandler.js");
 handler.addCommand( handler.channelCommands, {
 	name: "blub",
 	role: "",
+	log: 'test command that simply returns "blaaaa!"',
 	run: (message, arguments) =>
 	{
 		message.channel.send("blaaaa!");
@@ -12,6 +13,7 @@ handler.addCommand( handler.channelCommands, {
 handler.addCommand( handler.channelCommands, {
 	name: "add",
 	role: "mathematician",
+	log: 'for "mathematician" role on server messages',
 	run: (message, arguments) =>
 	{
 		if (arguments.length == 2)

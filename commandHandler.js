@@ -1,8 +1,31 @@
 const helper = require("./helperFunctions.js");
 
-function findCommandByName(commandArray, name)
+// Compare processors whitelist Parameters to find appropriate processor
+function findProcessorByWhitelist (processorArray, channel)
 {
-	return helper.searchArrayForName(commandArray, name);
+	for (let i = 0; i < processorArray.length; i++)
+	{
+		let whitelist = processorArray[i].whitelist;
+
+		if (whitelist != undefined && helper.searchArray(whitelist, channel))
+		{
+			return processorArray[i];
+		}
+	}
+}
+
+// Compare processors blacklist Parameters to find appropriate processor
+function findProcessorByBlacklist (processorArray, channel)
+{
+	for (let i = 0; i < processorArray.length; i++)
+	{
+		let blacklist = processorArray[i].blacklist;
+
+		if (blacklist == undefined || !helper.searchArray(blacklist, channel))
+		{
+			return processorArray[i];
+		}
+	}
 }
 
 module.exports = {
@@ -10,6 +33,12 @@ module.exports = {
 	addCommand: function (commandArray, command) {
 		commandArray.push(command);
 		console.log(`"${command.name}" command loaded. ${command.log}`);
+	},
+
+	// Add a messageProcessor, that scans and does stuff with messages
+	addMessageProcessor: function (processorArray, processor) {
+		processorArray.push(processor);
+		console.log(`"${processor.name}" loaded. ${processor.log}`);
 	},
 
 	hasPrefix: function (message, prefix)
@@ -23,7 +52,7 @@ module.exports = {
 		let arguments = message.content.substr(prefix.length).split(" ");   // remove prefix and split
 		let name = arguments.shift();    // get command name
 
-		let command = findCommandByName(commandArray, name);
+		let command = helper.searchArrayForName(commandArray, name);
 
 		if (command == undefined)
 		{
@@ -37,6 +66,23 @@ module.exports = {
 		}
 	},
 
+	// Searches for processor to run according to channel
+	runMessageProcessor: function (processorArray, message)
+	{
+		let processor = findProcessorByWhitelist(processorArray, message.channel.name);
+
+		if (processor == undefined)
+		{
+			processor = findProcessorByBlacklist(processorArray, message.channel.name);
+		}
+
+		if (processor != undefined)
+		{
+			processor.run(message);
+		}
+	},
+
 	channelCommands: [],
-	dmCommands: []
+	dmCommands: [],
+	messageProcessors: [],
 };

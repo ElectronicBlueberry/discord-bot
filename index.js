@@ -7,6 +7,8 @@ const client = new discord.Client();    // Client for communicating with discord
 const handler = require("./commandHandler.js");
 require("./commands/testCommand.js");
 
+require("./processors/testProcessor.js");
+
 // Ping Command
 var pingTimestamp = 0;
 
@@ -42,17 +44,22 @@ client.on("message", async (message) => {
 		return;
 	}
 
+	// Run DM commands
 	if (message.channel.type === "dm")
 	{
 		handler.runCommand(handler.dmCommands, message, "");
 		return;
 	}
 
+	// Run Server commands
 	if (handler.hasPrefix(message, config.prefix))
 	{
 		handler.runCommand(handler.channelCommands, message, config.prefix);
 		return;
 	}
+
+	// Process all other messages
+	handler.runMessageProcessor(handler.messageProcessors, message);
 });
 
 client.login(config.token);
