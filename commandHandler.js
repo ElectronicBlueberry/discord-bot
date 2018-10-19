@@ -9,7 +9,7 @@ module.exports = {
 	// Add a command object that can later be called by a user
 	addCommand: function (commandArray, command) {
 		commandArray.push(command);
-		console.log('"' + command.name + '" command loaded for "' + command.role + '" role');
+		console.log(`"${command.name}" command loaded. ${command.log}`);
 	},
 
 	hasPrefix: function (message, prefix)
