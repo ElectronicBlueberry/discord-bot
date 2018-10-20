@@ -1,6 +1,6 @@
 {
 	"name": "Plugin Releader",
-	"log": "adds '!relead' command for admin role that reloads all plugins",
+	"log": "adds '!rescan' command for admin role that reloads all plugins",
 	"files":
 	[
 		"reloader.js"

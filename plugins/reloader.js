@@ -1,7 +1,7 @@
 const loader = require("../pluginLoader.js");
 
 var channelCommands = [{
-	name: "rescanplugins",
+	name: "rescan",
 	role: "admin",
 	run: (message, arguments) =>
 	{
