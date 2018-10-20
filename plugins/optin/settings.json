@@ -1,0 +1,18 @@
+{
+	"role": "mitglied",
+	"optin_command": "join",
+	"optout_command": "leave",
+
+	"cant_join_message": "Du bist bereits in diesem Channel! Nutze '!leave [channel]' um ihn zu verlassen",
+	"cant_leave_message": "Du bist nicht in diesem Channel! Nutze '!join [channel]' um ihn zu betreten",
+
+	"wrong_arguments": "Bitte nenne einen der folgenden Channel direkt hinter dem Befehl:",
+	
+	"join_message": "Channel beigetreten",
+	"leave_message": "Channel verlassen",
+
+	"channels":
+	[
+		{"name": "memes", "role": "memes"}
+	]
+}

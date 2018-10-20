@@ -1,0 +1,8 @@
+{
+	"name": "Optionale Channel",
+	"log": "Erlaubt Nutzern optionale Channel zu betreten oder zu verlassen",
+	"files":
+	[
+		"/optin/main.js"
+	]
+}
