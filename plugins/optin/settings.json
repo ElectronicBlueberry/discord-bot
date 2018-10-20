@@ -14,5 +14,8 @@
 	"channels":
 	[
 		{"name": "memes", "role": "memes"}
-	]
+	],
+	"all_argument": "all",
+	"all_join_message": "Alle optionalen Channel betreten!",
+	"all_leave_message": "Alle optionalen Channel verlassen!"
 }

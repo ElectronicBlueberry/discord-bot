@@ -13,26 +13,83 @@ function buildChannelString()
 	return message;
 }
 
+function join_all(message)
+{
+	for (let i = 0; i < settings.channels.length; i++) {
+		join_channel(message, settings.channels[i].role);
+	}
+
+	message.channel.send(settings.all_join_message);
+}
+
+function leave_all(message)
+{
+	for (let i = 0; i < settings.channels.length; i++) {
+		leave_channel(message, settings.channels[i].role);
+	}
+
+	message.channel.send(settings.all_leave_message);
+}
+
+// attempts to leave channel and returns sucess
+function leave_channel(message, channel)
+{
+	let role = message.member.roles.find(r => r.name === channel);
+
+	if (role == undefined) {
+		return false;
+	}
+
+	message.member.removeRole(role);
+	return true;
+}
+
+// attempts fo join channel and returns sucess as 0: no such channel, 1: allready joined, 2: sucess
+function join_channel(message, channel)
+{
+	let role = message.guild.roles.find(r => r.name === channel);
+
+	if (role == undefined) {
+		return 0;
+	}
+
+	if (message.member.roles.find(r => r == role)) {
+		return 1;
+	}
+
+	message.member.addRole(role);
+	return 2;
+}
+
 var join = {
 	name: settings.optin_command,
 	role: settings.role,
 	run: (message, arguments) => {
 
 		let arg = arguments[0];
-		let role = message.guild.roles.find(r => r.name === arg);
 
-		if (role == undefined) {
+		if (arg === settings.all_argument) {
+			join_all(message);
+			return;
+		}
+
+		let sucess = 0;
+
+		if (settings.channels.find(c => c.name === arg)) {
+			sucess = join_channel(message, arg);
+		}
+
+		if (sucess == 0) {
 			message.channel.send(settings.wrong_arguments + buildChannelString());
 			return;
 		}
 
-		if (message.member.roles.find(r => r == role)) {
+		if (sucess == 1) {
 			message.channel.send( settings.cant_join_message);
 			return;
 		}
 
-		message.member.addRole(role);
-		message.channel.send( role.name + " " + settings.join_message);
+		message.channel.send( arg + " " + settings.join_message);
 	}
 };
 
@@ -47,15 +104,17 @@ var leave = {
 		}
 
 		let arg = arguments[0];
-		let role = message.member.roles.find(r => r.name === arg);
 
-		if (role == undefined){
-			message.channel.send( settings.cant_leave_message);
+		if (arg === settings.all_argument) {
+			leave_all(message);
 			return;
 		}
 
-		message.member.removeRole(role);
-		message.channel.send( role.name + " " + settings.leave_message);
+		if ( settings.channels.find(c => c.name === arg) && leave_channel(message, arg)) {
+			message.channel.send( arg + " " + settings.leave_message);
+		} else {
+			message.channel.send( settings.cant_leave_message);
+		}
 	}
 };
 
