@@ -2,6 +2,7 @@ const config = require("./config.json");    // Global bot settings and token
 const discord = require("discord.js");      // framework for discord api
 const loader = require("./pluginLoader.js");
 const handler = require("./commandHandler.js");
+const userdata = require("./userdata.js");
 
 const client = new discord.Client();    // Client for communicating with discord api
 
@@ -20,6 +21,13 @@ function recievePing(message)
 function sendPing(message)
 {
 	message.channel.send( (message.createdTimestamp - pingTimestamp) + "ms");
+}
+
+function shutdown()
+{
+	console.log(`${client.user.username} shutting down`);
+	userdata.database.save();
+	process.exit(0);
 }
 
 // Main bot code
@@ -70,5 +78,11 @@ client.on("guildMemberAdd", (member) => {
 		loader.joinHandler.run(member);
 	}
 });
+
+// Graceful shutdown
+
+process.on("SIGINT", () => shutdown());
+process.on("SIGTERM", () => shutdown());
+
 
 client.login(config.token);
