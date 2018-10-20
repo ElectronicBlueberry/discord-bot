@@ -1,29 +1,21 @@
-// Compare objects whitelist Parameters to find appropriate object
+// Compare objects whitelist Parameters to find appropriate objects
 function findByWhitelist (array, channel)
 {
-	for (let i = 0; i < array.length; i++)
-	{
-		let whitelist = array[i].whitelist;
-
-		if (whitelist != undefined && whitelist.find(c => c === channel))
-		{
-			return array[i];
+	return array.filter( item => {
+		if (item.whitelist != undefined) {
+			return item.whitelist.find(c => c === channel);
 		}
-	}
+	});
 }
 
-// Compare objects blacklist Parameters to find appropriate object
+// Compare objects blacklist Parameters to find appropriate objects
 function findByBlacklist (array, channel)
 {
-	for (let i = 0; i < array.length; i++)
-	{
-		let blacklist = array[i].blacklist;
-
-		if (blacklist == undefined || !blacklist.find(c => c === channel))
-		{
-			return array[i];
+	return array.filter( item => {
+		if (item.blacklist != undefined) {
+			return !(item.blacklist.find(c => c === channel));
 		}
-	}
+	});
 }
 
 module.exports = {
@@ -77,15 +69,9 @@ module.exports = {
 			return;
 		}
 
-		let processor = findByWhitelist(processorArray, message.channel.name);
+		let processors = [...findByWhitelist(processorArray, message.channel.name), ...findByBlacklist(processorArray, message.channel.name)];
 
-		if (processor == undefined)
-		{
-			processor = findByBlacklist(processorArray, message.channel.name);
-		}
-
-		if (processor != undefined)
-		{
+		for (var processor of processors) {
 			processor.run(message);
 		}
 	}

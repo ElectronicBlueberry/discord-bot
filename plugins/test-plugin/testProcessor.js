@@ -1,15 +1,19 @@
-var messageProcessors = [];
-
-messageProcessors.push({
+var haha = {
 	name: 'haha',
-	log: 'responds to everything with "haha"',
 	whitelist: ["general"],
-	blacklist: ["test-2"],
 	run: function (message) {
 		message.channel.send("haha");
 	}
-});
+};
+
+var hoho = {
+	name: "hoho",
+	blacklist: ["test"],
+	run: function (message) {
+		message.channel.send("hoho");
+	}
+};
 
 module.exports = {
-	messageProcessors
+	messageProcessors: [haha, hoho]
 };
