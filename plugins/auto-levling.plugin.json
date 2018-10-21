@@ -1,0 +1,9 @@
+{
+	"name": "auto-leveling",
+	"log": "Zählt Nachrichten und ändert den Rang eines Nutzers automatisch",
+	"files":
+	[
+		"./auto-leveling/wordCounter.js",
+		"./auto-leveling/wordCountCommands.js"
+	]
+}

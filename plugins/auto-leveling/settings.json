@@ -1,0 +1,10 @@
+{
+	"role": "mitglied",
+	"command_count": "nachrichten",
+	"command_rank": "rangliste",
+
+	"message_user_not_found": "Diesen Nutzer kenne ich nicht :confused:",
+	"message_sucess": "Nachrichten auf dem Server",
+
+	"message_rank": "Die 10 Nutzer mit dem meisten Nachrichten sind:"
+}

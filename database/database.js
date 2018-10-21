@@ -58,6 +58,10 @@ Database.prototype.save = function()
 
 Database.prototype.read = function(primaryKey, key)
 {
+	if (!this.data[primaryKey]) {
+		this.data[primaryKey] = {};
+	}
+
 	return this.data[primaryKey][key];
 };
 
@@ -68,6 +72,14 @@ Database.prototype.write = function(primaryKey, key, value)
 	}
 
 	this.data[primaryKey][key] = value;
+};
+
+// Returns an array of Objects with primaryKey and key Elements
+Database.prototype.getDataAsArray = function(key)
+{
+	return Object.keys(this.data).map((k) => {
+		return {primaryKey: k, key: this.data[k][key]};
+	});
 };
 
 module.exports = { Database };
