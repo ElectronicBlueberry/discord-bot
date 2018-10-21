@@ -1,5 +1,5 @@
 const fs = require('fs');
-const config = require("./databse_config.json");
+const config = require("./database_config.json");
 
 // Create a new, or open an exisitng databse
 function Database(databaseName, saveinterval)
