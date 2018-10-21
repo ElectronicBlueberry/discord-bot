@@ -74,7 +74,7 @@ client.on("messageReactionAdd", async (messageReaction, user) => {
 });
 
 client.on("guildMemberAdd", (member) => {
-	if (loader.joinHandler != undefined) {
+	if (typeof(loader.joinHandler.run) == 'function') {
 		loader.joinHandler.run(member);
 	}
 });
