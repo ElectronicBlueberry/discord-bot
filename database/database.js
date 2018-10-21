@@ -34,7 +34,7 @@ function Database(databaseName, saveinterval)
 	if (this.interval != -1) {
 		this.setSaveInterval(this.interval);
 	}
-};
+}
 
 // Intervall in milliseconds in which the database is written to the filesystem
 Database.prototype.setSaveInterval = function(interval)
