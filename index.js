@@ -1,8 +1,8 @@
-const config = require("./config.json");    // Global bot settings and token
-const discord = require("discord.js");      // framework for discord api
-const loader = require("./pluginLoader.js");
-const handler = require("./commandHandler.js");
-const userdata = require("./userdata.js");
+const config   = require("./config.json"      ); // Global bot settings and token
+const discord  = require("discord.js"         ); // framework for discord api
+const loader   = require("./pluginLoader.js"  );
+const handler  = require("./commandHandler.js");
+const userdata = require("./userdata.js"      );
 
 const client = new discord.Client();    // Client for communicating with discord api
 
@@ -81,7 +81,7 @@ client.on("guildMemberAdd", (member) => {
 
 // Graceful shutdown
 
-process.on("SIGINT", () => shutdown());
+process.on("SIGINT" , () => shutdown());
 process.on("SIGTERM", () => shutdown());
 
 
