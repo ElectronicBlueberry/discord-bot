@@ -12,14 +12,12 @@ loader.scanPlugins();
 // Ping Command
 var pingTimestamp = 0;
 
-function recievePing(message)
-{
+function recievePing(message) {
 	pingTimestamp = message.createdTimestamp;
 	message.channel.send("pong");
 }
 
-function sendPing(message)
-{
+function sendPing(message) {
 	message.channel.send( (message.createdTimestamp - pingTimestamp) + "ms");
 }
 
@@ -80,7 +78,6 @@ client.on("guildMemberAdd", (member) => {
 });
 
 // Graceful shutdown
-
 process.on("SIGINT" , () => shutdown());
 process.on("SIGTERM", () => shutdown());
 
