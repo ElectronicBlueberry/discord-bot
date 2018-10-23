@@ -1,23 +1,3 @@
-// Compare objects whitelist Parameters to find appropriate objects
-function findByWhitelist (array, channel)
-{
-	return array.filter( item => {
-		if (item.whitelist != undefined) {
-			return item.whitelist.find(c => c === channel);
-		}
-	});
-}
-
-// Compare objects blacklist Parameters to find appropriate objects
-function findByBlacklist (array, channel)
-{
-	return array.filter( item => {
-		if (item.blacklist != undefined) {
-			return !(item.blacklist.find(c => c === channel));
-		}
-	});
-}
-
 module.exports = {
 	// Add a command object that can later be called by a user
 	addCommand: function (commandArray, command) {
@@ -31,16 +11,14 @@ module.exports = {
 		console.log(`"${processor.name}" loaded. ${processor.log}`);
 	},
 
-	hasPrefix: function (message, prefix)
-	{
+	hasPrefix: function (message, prefix) {
 		return message.content.substring(0, prefix.length) === prefix;
 	},
 
 	// Searches for a command in given array and runs it
 	runCommand: function (commandArray, message, prefix)
 	{
-		if (commandArray == undefined)
-		{
+		if (commandArray == undefined) {
 			return;
 		}
 
@@ -49,14 +27,12 @@ module.exports = {
 
 		let command = commandArray.find(cmd => cmd.name === name);
 
-		if (command == undefined)
-		{
+		if (command == undefined) {
 			return;
 		}
 
 		// Check for role
-		if (command.role === "" || message.member.roles.find(role => role.name === command.role))
-		{
+		if (command.role === "" || message.member.roles.find(role => role.name === command.role)) {
 			command.run(message, arguments);
 		}
 	},
@@ -64,15 +40,12 @@ module.exports = {
 	// Searches for processor to run according to channel
 	runMessageProcessor: function (processorArray, message)
 	{
-		if (processorArray == undefined)
-		{
+		if (processorArray == undefined) {
 			return;
 		}
 
-		let processors = [...findByWhitelist(processorArray, message.channel.name), ...findByBlacklist(processorArray, message.channel.name)];
-
-		for (var processor of processors) {
-			processor.run(message);
-		}
+		processorArray.forEach(element => {
+			element.run(message);
+		});
 	}
 };
