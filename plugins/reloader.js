@@ -1,6 +1,6 @@
 const loader = require("../pluginLoader.js");
 
-var channelCommands = [{
+var rescan = {
 	name: "rescan",
 	role: "admin",
 	run: (message, arguments) =>
@@ -12,8 +12,6 @@ var channelCommands = [{
 
 		message.channel.send("Fertig!");
 	}
-}];
-
-module.exports = {
-	channelCommands
 };
+
+exports.channelCommands = [rescan];
