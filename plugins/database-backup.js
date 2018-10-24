@@ -17,4 +17,17 @@ let backup = {
 	}
 };
 
-exports.channelCommands = [ backup ];
+let save = {
+	name: "save",
+	role: "admin",
+	run: (message, arguments) => {
+		const startTime = process.hrtime();
+		message.channel.send("forcing database save");
+		userdata.database.save();
+		message.channel.send("database saved");
+		const endTime = process.hrtime(startTime);
+		message.channel.send(`it took ${(endTime[0] / 1000) + (endTime[1] / 1000000)} milliseconds`);
+	}
+}
+
+exports.channelCommands = [ backup, save ];
