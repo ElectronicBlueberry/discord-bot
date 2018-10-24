@@ -14,27 +14,25 @@ function Database(databaseName, saveinterval)
 	console.log(` - Opening database '${this.name}' at "${this.path}"`);
 
 	// Open or create file
-	{
-		let files = fs.readdirSync(config.data_folder);
-		this.file = files.find(f => f === `${this.name}${config.file_suffix}`);
+	let files = fs.readdirSync(config.data_folder);
+	this.file = files.find(f => f === `${this.name}${config.file_suffix}`);
 
-		if (this.file != undefined)
-		{
-			// read database file
-			let content = fs.readFileSync(`${config.data_folder}/${this.file}`);
-			this.data = JSON.parse(content);
-		}
-		else
-		{
-			// create database file
-			this.file = `${this.name}${config.file_suffix}`;
-			this.save();
-		}
+	if (this.file != undefined)
+	{
+		// read database file
+		let content = fs.readFileSync(`${config.data_folder}/${this.file}`);
+		this.data = JSON.parse(content);
+	}
+	else
+	{
+		// create database file
+		this.file = `${this.name}${config.file_suffix}`;
+		this.save();
 	}
 
 	if (this.interval != -1) {
 		this.setSaveInterval(this.interval);
-	}
+		}
 }
 
 // Intervall in milliseconds in which the database is written to the filesystem
