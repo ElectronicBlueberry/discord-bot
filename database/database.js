@@ -9,8 +9,9 @@ function Database(databaseName, saveinterval)
 	this.interval = saveinterval || -1;
 	this.file;
 	this.timeout;
+	this.path = `${config.data_folder}/${this.name}${config.file_suffix}`;
 
-	console.log(` - Opening database '${this.name}' at "${config.data_folder}/${this.name}${config.file_suffix}"`);
+	console.log(` - Opening database '${this.name}' at "${this.path}"`);
 
 	// Open or create file
 	{
