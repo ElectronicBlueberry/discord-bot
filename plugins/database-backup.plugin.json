@@ -1,0 +1,8 @@
+{
+	"name": "Database Backup",
+	"log": "adds '!backup' to backup the database",
+	"files":
+	[
+		"database-backup.js"
+	]
+}
