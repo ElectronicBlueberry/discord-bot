@@ -20,7 +20,7 @@ module.exports = {
 		}
 
 		// Check for role
-		if (command.role === "" || message.member.roles.find(role => role.name === command.role)) {
+		if (command.role === "" || message.member.roles.get(command.roleId)) {
 			command.run(message, arguments);
 		}
 	},
