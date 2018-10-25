@@ -1,6 +1,7 @@
 // Module, that others which need access to user data can require
-const db = require("./database/database.js");
-var database = new db.Database("users", 600000);
-//var database = new db.Database("users", 15000); // reduced write rate for testing
 
-module.exports = {database};
+const discord  = require("discord.js"         ); // framework for discord api
+const db = require("./database/database.js");
+
+exports.database = new db.Database("users", 600000);
+exports.client = new discord.Client();

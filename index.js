@@ -1,10 +1,7 @@
 const config   = require("./config.json"      ); // Global bot settings and token
-const discord  = require("discord.js"         ); // framework for discord api
 const loader   = require("./pluginLoader.js"  );
 const handler  = require("./commandHandler.js");
 const userdata = require("./userdata.js"      );
-
-const client = new discord.Client();    // Client for communicating with discord api
 
 // Plugins
 loader.scanPlugins();
@@ -23,17 +20,17 @@ function sendPing(message) {
 
 function shutdown()
 {
-	console.log(`${client.user.username} shutting down`);
+	console.log(`${userdata.client.user.username} shutting down`);
 	userdata.database.save();
 	process.exit(0);
 }
 
 // Main bot code
-client.on("ready", async () => {
-	console.log(`${client.user.username} ready`);
+userdata.client.on("ready", async () => {
+	console.log(`${userdata.client.user.username} ready`);
 });
 
-client.on("message", async (message) => {
+userdata.client.on("message", async (message) => {
 	if (message.author.bot)
 	{
 		if (message.content === "pong")
@@ -67,11 +64,11 @@ client.on("message", async (message) => {
 	handler.runMessageProcessor(loader.messageProcessors, message);
 });
 
-client.on("messageReactionAdd", async (messageReaction, user) => {
+userdata.client.on("messageReactionAdd", async (messageReaction, user) => {
 	handler.runMessageProcessor(loader.reactionProcessors, messageReaction.message);
 });
 
-client.on("guildMemberAdd", (member) => {
+userdata.client.on("guildMemberAdd", (member) => {
 	if (typeof(loader.joinHandler.run) == 'function') {
 		loader.joinHandler.run(member);
 	}
@@ -82,4 +79,4 @@ process.on("SIGINT" , () => shutdown());
 process.on("SIGTERM", () => shutdown());
 
 
-client.login(config.token);
+userdata.client.login(config.token);
