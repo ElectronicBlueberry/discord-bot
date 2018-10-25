@@ -1,16 +1,4 @@
 module.exports = {
-	// Add a command object that can later be called by a user
-	addCommand: function (commandArray, command) {
-		commandArray.push(command);
-		console.log(`"${command.name}" command loaded. ${command.log}`);
-	},
-
-	// Add a messageProcessor, that scans and does stuff with messages
-	addMessageProcessor: function (processorArray, processor) {
-		processorArray.push(processor);
-		console.log(`"${processor.name}" loaded. ${processor.log}`);
-	},
-
 	hasPrefix: function (message, prefix) {
 		return message.content.substring(0, prefix.length) === prefix;
 	},
