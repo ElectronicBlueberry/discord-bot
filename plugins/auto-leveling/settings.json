@@ -6,5 +6,11 @@
 	"message_user_not_found": "Diesen Nutzer kenne ich nicht :confused:",
 	"message_sucess": "Nachrichten auf dem Server",
 
-	"message_rank": "Die 10 Nutzer mit dem meisten Nachrichten sind:"
+	"message_rank": "Die 10 Nutzer mit dem meisten Nachrichten sind:",
+	"ranks":
+	[
+		{"role": "brand-neu", "message-count": 0, "time-count": 0},
+		{"role": "neu", "message-count": 3, "time-count": 5},
+		{"role": "mitglied", "message-count": 10, "time-count": 2880}
+	]
 }
