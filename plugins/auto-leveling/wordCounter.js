@@ -1,6 +1,6 @@
 const userdata = require("../../userdata.js");
 
-var countWords = {
+let countWords = {
 	name: "Wort Counter",
 	run: function(message) {
 		let user = message.author.id;

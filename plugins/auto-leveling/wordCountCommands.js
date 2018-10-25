@@ -17,7 +17,7 @@ function searchForUser(message, userName) {
 	return user;
 }
 
-var messageCount = {
+let messageCount = {
 	name: settings.command_count,
 	role: settings.role,
 	run: function (message, arguments) {
@@ -48,7 +48,7 @@ var messageCount = {
 	}
 };
 
-var messageRank = {
+let messageRank = {
 	name: settings.command_rank,
 	role: settings.role,
 	run: async function (message, arguments) {

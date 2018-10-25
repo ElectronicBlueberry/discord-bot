@@ -1,6 +1,6 @@
 const loader = require("../pluginLoader.js");
 
-var rescan = {
+let rescan = {
 	name: "rescan",
 	role: "admin",
 	run: (message, arguments) =>
