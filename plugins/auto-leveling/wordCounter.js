@@ -1,5 +1,16 @@
-const userdata = require("../../userdata.js");
-const settings = require('require-reload')("./settings.json")
+const userdata = require("../../userdata.js"       );
+const settingsFile = require('require-reload'          )("./settings.json");
+const helper   = require("../../helperFunctions.js");
+
+var settings = settingsFile;
+
+// Change names to IDs
+userdata.client.on("ready", async () => {
+	settings.rank_ups.forEach((e) => {
+		e.to   = helper.getIdByName(userdata.client.guilds.first().roles, e.to  );
+		e.from = helper.getIdByName(userdata.client.guilds.first().roles, e.from);
+	});
+});
 
 var finalRole = settings.rank_ups[settings.rank_ups.length - 1].to;
 var MS_TO_MIN = 1 / 60000;
@@ -14,11 +25,8 @@ async function promote(message, rankIndex, messageCount)
 		return;
 	}
 
-	let roleIdTo   = message.guild.roles.find(r => r.name === settings.rank_ups[rankIndex].to  ).id;
-	let roleIdFrom = message.guild.roles.find(r => r.name === settings.rank_ups[rankIndex].from).id;
-
-	message.member.addRole   (roleIdTo  );
-	message.member.removeRole(roleIdFrom);
+	message.member.addRole   (settings.rank_ups[rankIndex].to);
+	message.member.removeRole(settings.rank_ups[rankIndex].from);
 }
 
 let countWords = {
@@ -34,10 +42,10 @@ let countWords = {
 		messageCount++;
 		userdata.database.write(user, "messages", messageCount);
 
-		if (message.member.roles.find(r => r.name === finalRole) == undefined)
+		if (message.member.roles.get(finalRole) == undefined)
 		{
 			settings.rank_ups.forEach((role, i) => {
-				if (message.member.roles.find(r => r.name === role.from)) {
+				if (message.member.roles.get(role.from)) {
 					promote(message, i, messageCount);
 					return;
 				}
