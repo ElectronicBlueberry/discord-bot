@@ -1,5 +1,17 @@
 const fs = require('fs');
 const config = require("./config.json");
+const userdata = require("./userdata.js");
+
+// add role ids for all role elements
+userdata.client.on("ready", () => {	
+	let allCommands = [exports.channelCommands, exports.dmCommands];
+
+	mAndP.forEach(e => {
+		e.forEach(command => {
+			command.roleId = clinet.guilds.first().roles.find(role => role.name === command.role);
+		});
+	});
+});
 
 module.exports = {
 
