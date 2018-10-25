@@ -7,10 +7,9 @@
 	"message_sucess": "Nachrichten auf dem Server",
 
 	"message_rank": "Die 10 Nutzer mit dem meisten Nachrichten sind:",
-	"ranks":
+	"rank_ups":
 	[
-		{"role": "brand-neu", "message-count": 0, "time-count": 0},
-		{"role": "neu", "message-count": 3, "time-count": 5},
-		{"role": "mitglied", "message-count": 10, "time-count": 2880}
+		{"from": "brand-neu", "to": "neu", "message_count": 3, "time_count": 5},
+		{"from": "neu", "to": "mitglied", "message_count": 280, "time_count": 2880}
 	]
 }
