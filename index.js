@@ -26,7 +26,7 @@ function shutdown()
 }
 
 // Main bot code
-userdata.client.on("ready", async () => {
+userdata.client.on("ready", () => {
 	console.log(`${userdata.client.user.username} ready`);
 });
 
