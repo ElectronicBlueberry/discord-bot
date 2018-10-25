@@ -78,5 +78,4 @@ userdata.client.on("guildMemberAdd", (member) => {
 process.on("SIGINT" , () => shutdown());
 process.on("SIGTERM", () => shutdown());
 
-
 userdata.client.login(config.token);
