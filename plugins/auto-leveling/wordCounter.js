@@ -1,5 +1,5 @@
 const userdata = require("../../userdata.js");
-const settings = require("./settings.json")
+const settings = require('require-reload')("./settings.json")
 
 var finalRole = settings.rank_ups[settings.rank_ups.length - 1].to;
 var MS_TO_MIN = 1 / 60000;
