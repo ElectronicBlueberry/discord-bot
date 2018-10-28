@@ -76,7 +76,7 @@ userdata.client.on("messageReactionAdd", async (messageReaction, user) => {
 userdata.client.on("guildMemberAdd", (member) => {
 	if (loader.joinHandlers != undefined) 
 	{
-		loader.joinHandlers.array.forEach(element => {
+		loader.joinHandlers.forEach(element => {
 			element.run(member);
 		});
 	}
