@@ -4,7 +4,7 @@ module.exports = {
 	},
 
 	// Searches for a command in given array and runs it
-	runCommand: function (commandArray, message, prefix)
+	runCommand: function (commandArray, message, prefix, member)
 	{
 		if (commandArray == undefined) {
 			return;
@@ -25,8 +25,8 @@ module.exports = {
 		}
 
 		// Check for role
-		if (command.role == undefined || message.member.roles.get(command.roleId)) {
-			command.run(message, arguments);
+		if (command.role == undefined || member.roles.get(command.roleId)) {
+			command.run(message, arguments, member);
 		}
 	},
 

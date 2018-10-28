@@ -49,14 +49,19 @@ userdata.client.on("message", async (message) => {
 	// Run DM commands
 	if (message.channel.type === "dm")
 	{
-		handler.runCommand(loader.dmCommands, message, "");
+		let member = userdata.client.guilds.first().members.get(message.author.id);
+
+		if (member != undefined) {
+			handler.runCommand(loader.dmCommands, message, "", member);
+		}
+		
 		return;
 	}
 
 	// Run Server commands
 	if (handler.hasPrefix(message, config.prefix) && !(config.channel_command_blacklist.indexOf(message.channel.name) > -1))
 	{
-		handler.runCommand(loader.channelCommands, message, config.prefix);
+		handler.runCommand(loader.channelCommands, message, config.prefix, message.member);
 		return;
 	}
 
