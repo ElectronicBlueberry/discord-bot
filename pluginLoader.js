@@ -68,8 +68,8 @@ exports.scanPlugins = () => {
 				exports.reactionProcessors = exports.reactionProcessors.concat(script.reactionProcessors);
 			}
 
-			if (script.joinHandler != undefined) {
-				exports.joinHandler = script.joinHandler;
+			if (script.joinHandlers != undefined) {
+				exports.joinHandlers = exports.script.joinHandlers.concat(script.joinHandlers);
 			}
 		}
 	}
