@@ -69,9 +69,9 @@ userdata.client.on("messageReactionAdd", async (messageReaction, user) => {
 });
 
 userdata.client.on("guildMemberAdd", (member) => {
-	if (typeof(loader.joinHandler.run) == 'function') {
-		loader.joinHandler.run(member);
-	}
+	loader.joinHandlers.array.forEach(element => {
+		element.run(member);
+	});
 });
 
 // Graceful shutdown

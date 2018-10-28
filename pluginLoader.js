@@ -15,7 +15,7 @@ exports.channelCommands = [];
 exports.messageProcessors = [];
 exports.dmCommands = [];
 exports.reactionProcessors = [];
-exports.joinHandler = {};
+exports.joinHandlers = [];
 
 exports.scanPlugins = () => {
 	console.log("Searching for Plugins...");
