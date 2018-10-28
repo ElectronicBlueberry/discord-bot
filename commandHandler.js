@@ -10,7 +10,12 @@ module.exports = {
 			return;
 		}
 
-		let arguments = message.content.substr(prefix.length).split(" ");   // remove prefix and split
+		let arguments = [];
+
+		if (message.content.length <= 128) {
+			arguments = message.content.substr(prefix.length).split(" ");   // remove prefix and split
+		}
+
 		let name = arguments.shift();    // get command name
 
 		let command = commandArray.find(cmd => cmd.name === name);
@@ -20,7 +25,7 @@ module.exports = {
 		}
 
 		// Check for role
-		if (command.role === "" || message.member.roles.get(command.roleId)) {
+		if (command.role == undefined || message.member.roles.get(command.roleId)) {
 			command.run(message, arguments);
 		}
 	},
