@@ -25,7 +25,7 @@ module.exports = {
 		}
 
 		// Check for role
-		if (command.role == undefined || member.roles.get(command.roleId)) {
+		if (command.role == undefined || command.role == "" || member.roles.get(command.roleId)) {
 			command.run(message, arguments, member);
 		}
 	},
