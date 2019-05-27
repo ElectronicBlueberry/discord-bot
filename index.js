@@ -61,7 +61,7 @@ userdata.client.on("message", async (message) => {
 	}
 
 	// Run Server commands
-	if (handler.hasPrefix(message, config.prefix) && !(config.channel_command_blacklist.indexOf(message.channel.name) > -1))
+	if (handler.hasPrefix(message, config.prefix) && config.channel_command_whitelist.indexOf(message.channel.name) > -1)
 	{
 		handler.runCommand(loader.channelCommands, message, config.prefix, message.member);
 		return;
