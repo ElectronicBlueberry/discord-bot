@@ -31,24 +31,26 @@ userdata.client.on("ready", () => {
 });
 
 userdata.client.on("message", async (message) => {
-	if (message.author.bot)
-	{
-		if (message.content === "pong")
-		{
-			sendPing(message);
-		}
-		return;
-	}
-
-	if (message.content === config.prefix + "ping")
-	{
-		recievePing(message);
-		return;
-	}
-
 	// Run DM commands
 	if (message.channel.type === "dm")
 	{
+		// Ping Command
+		if (message.author.bot)
+		{
+			if (message.content === "pong")
+			{
+				sendPing(message);
+			}
+			return;
+		}
+
+		if (message.content === config.prefix + "ping")
+		{
+			recievePing(message);
+			return;
+		}
+
+		// Channel Commands
 		let member = userdata.client.guilds.first().members.get(message.author.id);
 
 		if (member != undefined) {
