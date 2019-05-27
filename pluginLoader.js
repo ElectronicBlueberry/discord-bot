@@ -7,7 +7,18 @@ userdata.client.on("ready", () => {
 	let allCommands = [...exports.channelCommands, ...exports.dmCommands];
 
 	allCommands.forEach(command => {
-		command.roleId = userdata.client.guilds.first().roles.find(role => role.name === command.role).id;
+		if (command.role) {
+			
+			let role = userdata.client.guilds.first().roles.find(role => role.name === command.role);
+			if (role === null) {
+				command.roleId = null;
+
+				console.log("WARINING!");
+				console.log(`Role "${command.role}" not found!`);
+			} else {
+				command.roleId = role.id;
+			}
+		}
 	});
 });
 

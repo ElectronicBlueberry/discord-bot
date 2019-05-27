@@ -119,5 +119,5 @@ var leave = {
 };
 
 module.exports = {
-	channelCommands: [join, leave]
+	dmCommands: [join, leave]
 };

@@ -1,5 +1,5 @@
 {
-	"role": "mitglied",
+	"role": "",
 	"optin_command": "join",
 	"optout_command": "leave",
 
@@ -13,7 +13,7 @@
 
 	"channels":
 	[
-		{"name": "memes", "role": "memes"}
+		{"name": "minecraft", "role": "minecraft"}
 	],
 	
 	"all_argument": "all",
