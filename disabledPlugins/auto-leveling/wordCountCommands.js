@@ -1,5 +1,5 @@
 const userdata = require("../../userdata.js");
-const settings = require("./settings.json");
+const settings = require("./settings.json.js");
 
 function searchForUser(message, userName) {
 	let user;
