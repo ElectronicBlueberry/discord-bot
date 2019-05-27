@@ -13,8 +13,7 @@
 
 	"channels":
 	[
-		{"name": "minecraft", "role": "mc"},
-		{"name": "mc", "role": "mc"}
+		{"name": "minecraft", "role": "mc"}
 	],
 	
 	"all_argument": "all",

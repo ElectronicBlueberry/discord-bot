@@ -16,7 +16,7 @@ function buildChannelString()
 function join_all(message)
 {
 	for (let i = 0; i < settings.channels.length; i++) {
-		join_channel(message, settings.channels[i].role);
+		join_channel(message, settings.channels[i].name);
 	}
 
 	message.channel.send(settings.all_join_message);
@@ -25,16 +25,25 @@ function join_all(message)
 function leave_all(message)
 {
 	for (let i = 0; i < settings.channels.length; i++) {
-		leave_channel(message, settings.channels[i].role);
+		leave_channel(message, settings.channels[i].name);
 	}
 
 	message.channel.send(settings.all_leave_message);
 }
 
+function find_role(name)
+{
+	let channel = settings.channels.find(e => {
+		return e.name === name;
+	});
+
+	return channel.role;
+}
+
 // attempts to leave channel and returns sucess
 function leave_channel(message, channel)
 {
-	let role = message.member.roles.find(r => r.name === channel);
+	let role = message.member.roles.find(r => r.name === find_role(channel));
 
 	if (role == undefined) {
 		return false;
@@ -47,7 +56,7 @@ function leave_channel(message, channel)
 // attempts fo join channel and returns sucess as 0: no such channel, 1: allready joined, 2: sucess
 function join_channel(message, channel)
 {
-	let role = message.guild.roles.find(r => r.name === channel);
+	let role = message.guild.roles.find(r => r.name === find_role(channel));
 
 	if (role == undefined) {
 		return 0;
