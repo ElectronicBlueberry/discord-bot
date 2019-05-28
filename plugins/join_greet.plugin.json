@@ -1,0 +1,8 @@
+{
+	"name": "Wilkommens Nachricht",
+	"log": "Sendet im Guest-Channel eine Wilkommens Nachricht an neue Nutzer",
+	"files":
+	[
+		"/join_greet/main.js"
+	]
+}
