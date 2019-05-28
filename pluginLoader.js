@@ -80,7 +80,7 @@ exports.scanPlugins = () => {
 			}
 
 			if (script.joinHandlers != undefined) {
-				exports.joinHandlers = exports.script.joinHandlers.concat(script.joinHandlers);
+				exports.joinHandlers = exports.joinHandlers.concat(script.joinHandlers);
 			}
 		}
 	}
