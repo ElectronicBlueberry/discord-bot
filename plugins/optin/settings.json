@@ -13,7 +13,8 @@
 
 	"channels":
 	[
-		{"name": "minecraft", "role": "mc"}
+		{"name": "diskussionen", "role": "disk"},
+		{"name": "politik", "role": "pol"}
 	],
 	
 	"all_argument": "all",
