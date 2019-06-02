@@ -44,6 +44,8 @@ Database.prototype.setSaveInterval = function(interval)
 
 	if (interval == -1) {
 		console.log(` - Turned off autosave for database '${this.name}'`);
+		clearInterval(this.timeout);
+		return;
 	}
 
 	this.timeout = setInterval(() => this.save(), interval);
