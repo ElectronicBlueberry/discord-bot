@@ -13,7 +13,7 @@ module.exports = {
 		let arguments = [];
 
 		if (message.content.length <= 128) {
-			arguments = message.content.substr(prefix.length).split(" ");   // remove prefix and split
+			arguments = message.content.substr(prefix.length).split(/ +/);   // remove prefix and split
 		}
 
 		let name = arguments.shift();    // get command name
