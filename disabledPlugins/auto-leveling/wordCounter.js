@@ -1,5 +1,5 @@
-const userdata = require("../../userdata.js"       );
-const settingsFile = require('require-reload'          )("./settings.json");
+const userdata = require("../../userdata.js");
+const settingsFile = require('require-reload')("./settings.json");
 const helper   = require("../../helperFunctions.js");
 
 var settings = settingsFile;
