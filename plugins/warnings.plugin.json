@@ -1,0 +1,8 @@
+{
+	"name": "Warnungen und Ermahnungen",
+	"log": "Warne und ermahne Nutzer anonym via den Bot",
+	"files":
+	[
+		"/warnings/main.js"
+	]
+}

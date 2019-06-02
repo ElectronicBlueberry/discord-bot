@@ -1,0 +1,23 @@
+{
+	"role": "Mod",
+
+	"warning_approve_count": "1",
+
+	"command_warning": "mahnung",
+	"command_warning_new": "neu",
+	"command_warning_content": "inhalt",
+	"command_warning_approve": "genehmigen",
+	"command_warning_decline": "ablehnen",
+	"command_warning_cancel": "abbrechen",
+	"command_warning_preview": "vorschau",
+	"command_warning_send": "senden",
+	"command_warning_setlevel": "mahnstufe",
+
+	"command_level": "mahnstufe",
+	"command_level_reset": "zurücksetzen",
+	"command_level_add": "erhöhen",
+
+	"command_help": "hilfe",
+
+	"archive_channel": "mahnungs-archiv"
+}
