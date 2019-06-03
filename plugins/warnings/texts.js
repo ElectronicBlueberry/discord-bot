@@ -3,7 +3,7 @@ const config = require("../../config.json");
 
 exports.warning_help = () => {
 	return `
-Nutze "${config.prefix}${settings.command_warning} ${settings.command_warning_new} @Nutzername Mahnstufe"
+Nutze "${config.prefix}${settings.command_warning} ${settings.command_warning_new} Nutzer Mahnstufe"
 um eine neue Mahnung zu erstellen.
 `;
 };
@@ -19,7 +19,7 @@ oder breche die Mahnung mit "${config.prefix}${settings.command_warning} ${setti
 exports.warning_new_nouser = () => {
 	return `
 Bitte nenne einen Nutzer in dem folgendem Format:
-"${config.prefix}${settings.command_warning} ${settings.command_warning_new} @Nutzername Mahnstufe"
+"${config.prefix}${settings.command_warning} ${settings.command_warning_new} Nutzer Mahnstufe"
 `;
 };
 
@@ -37,7 +37,7 @@ exports.warning_none_open = () => {
 	return `
 Keine offene Mahnung!
 
-Nutze "${config.prefix}${settings.command_warning} ${settings.command_warning_new} @Nutzername Mahnstufe"
+Nutze "${config.prefix}${settings.command_warning} ${settings.command_warning_new} Nutzer Mahnstufe"
 um eine Mahnung zu erstellen.
 `;
 };
@@ -56,7 +56,7 @@ exports.warning_content_sucess = () => {
 Inhalt gesetzt.
 Editiere die Nachricht, um den Inhalt der Mahnung zu ändern.
 
-"${config.prefix}${settings.command_warning} ${settings.command_warning_approve}" um die Mahnung zu bestätigen.
+"${config.prefix}${settings.command_warning} ${settings.command_warning_approve}" um die Mahnung zu genehmigen.
 
 "${config.prefix}${settings.command_warning} ${settings.command_warning_decline}" um ein Veto einzulegen.
 
@@ -66,7 +66,7 @@ Editiere die Nachricht, um den Inhalt der Mahnung zu ändern.
 
 "${config.prefix}${settings.command_warning} ${settings.command_warning_setlevel} Mahnstufe" um die Mahnstufenerhöhung der Mahnung zu ändern.
 
-Es werden ${settings.warning_approve_count} Bestätigungen benötigt, bevor die Mahnung gesendet werden kann.
+Es werden ${settings.warning_approve_count} Genehmigungen benötigt, bevor die Mahnung gesendet werden kann.
 `;
 };
 
@@ -179,11 +179,11 @@ exports.level_help = () => {
 	return `
 Folgende Befehle sind für "${config.prefix}${settings.command_level}" verfügbar:
 
-"${config.prefix}${settings.command_level} @Nutzername" fragt die Mahnstufe ab
+"${config.prefix}${settings.command_level} Nutzer" fragt die Mahnstufe ab
 
-"${config.prefix}${settings.command_level} ${settings.command_level_add} @Nutzername Mahnstufe" erhöht die Mahnstufe
+"${config.prefix}${settings.command_level} ${settings.command_level_add} Nutzer Mahnstufe" erhöht die Mahnstufe
 
-"${config.prefix}${settings.command_level} ${settings.command_level_reset} @Nutzername" setzt die Mahnstufe auf 0 zurück
+"${config.prefix}${settings.command_level} ${settings.command_level_reset} Nutzer" setzt die Mahnstufe auf 0 zurück
 `;
 };
 
@@ -191,7 +191,7 @@ exports.level_nouser = () => {
 	return `
 Nenne ein Mitglied. Beispiel:
 
-"${config.prefix}${settings.command_level} ${settings.command_level_add} @Nutzername Mahnstufe"
+"${config.prefix}${settings.command_level} ${settings.command_level_add} Nutzer Mahnstufe"
 `;
 };
 
