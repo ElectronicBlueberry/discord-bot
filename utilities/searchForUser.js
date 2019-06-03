@@ -1,8 +1,10 @@
 exports.searchForUser = (message, userName) => {
 	let user;
 	
+	let regex = /[^a-zA-Z0-9 #]+/;
 	if (userName.includes('#')) {
-		user = message.guild.members.find(m => userName == m.user.tag);
+		let userTag = userName.replace(regex, '');
+		user = message.guild.members.find(m => userTag == m.user.tag.replace(regex, ''));
 	}
 	
 	if (user == undefined) {
