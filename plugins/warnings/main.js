@@ -193,7 +193,7 @@ async function attempt_warning_send(message) {
 		let target = database.read("meta", "target");
 		let current_level = level_increase(target, parseInt(level));
 		
-		userdata.client.channels.find("name", settings.archive_channel).send(texts.warning_archive(
+		userdata.client.channels.find(c => (c.name == settings.archive_channel)).send(texts.warning_archive(
 			database.read("meta", "author"),
 			target,
 			content,
