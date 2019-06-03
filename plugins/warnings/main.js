@@ -323,10 +323,17 @@ var level = {
 			return;
 		}
 
-		let target_user = util.searchForUser(message, arg[0]);
+		let username;
+		if (!arg[1]) {
+			username = arg[0];
+		} else {
+			username = arg[1];
+		}
+
+		let target_user = util.searchForUser(message, username);
 
 		if (target_user == null) {
-			message.channel.send(texts.no_user_found(arg[0]));
+			message.channel.send(texts.no_user_found(username));
 			message.channel.send(texts.level_nouser());
 			return;
 		}
