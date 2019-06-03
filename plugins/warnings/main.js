@@ -116,6 +116,10 @@ function decline_warning(message, member) {
 		vetos = [];
 	}
 
+	if (approves == undefined) {
+		approves = [];
+	}
+
 	// Remove Approve
 	let approveIndex = approves.indexOf(member.id);
 	if (approveIndex != -1) {
@@ -142,6 +146,10 @@ function approve_warning(message, member) {
 
 	let approves = database.read("meta", "approves");
 	let vetos = database.read("meta", "vetos");
+
+	if (vetos == undefined) {
+		vetos = [];
+	}
 
 	if (approves == undefined) {
 		approves = [];
