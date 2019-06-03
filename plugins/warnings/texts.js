@@ -25,7 +25,7 @@ Bitte nenne einen Nutzer in dem folgendem Format:
 
 exports.warning_new_sucess = (id, target, level) => {
 	return `
-Neue Mahnung erstellt von <@${id}> für Nutzer <@${target}> mit dem Mahnstufe ${level}
+Neue Mahnung erstellt von <@${id}> für Nutzer <@${target}> mit der Mahnstufe ${level}
 
 Nutze jetzt
 "${config.prefix}${settings.command_warning} ${settings.command_warning_content} [Inhalt der Mahnung]"
