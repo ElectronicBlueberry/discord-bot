@@ -3,5 +3,5 @@
 const discord  = require("discord.js"); // framework for discord api
 const db = require("./database/database.js");
 
-exports.database = new db.Database("users", 600000);
+exports.database = new db.Database("users");
 exports.client = new discord.Client();
