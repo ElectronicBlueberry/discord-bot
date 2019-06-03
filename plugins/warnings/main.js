@@ -3,6 +3,7 @@ const userdata = require("../../userdata.js");
 const db = require("../../database/database.js")
 const texts = require('require-reload')('./texts.js');
 const config = require("../../config.json");
+const util = require("../../utilities/searchForUser.js");
 
 // new database for warnigns without autosaves
 var database = new db.Database("warnings");
@@ -33,7 +34,7 @@ function new_warning(message, arg, member) {
 	}
 
 	// wrong usage
-	if (!message.mentions.members.first()) {
+	if (!arg[1]) {
 		message.channel.send(texts.warning_new_nouser());
 		return;
 	}
@@ -46,7 +47,14 @@ function new_warning(message, arg, member) {
 	database.write("global", "total_warning_count", ++count || 0);
 
 	let author = member.id;
-	let target = message.mentions.members.first().id;
+	let target_user = util.searchForUser(message, arg[1]);
+
+	if (target_user == null) {
+		message.channel.send(texts.no_user_found(arg[1]));
+		return;
+	}
+
+	let target = target_user.id;
 	let level = parseInt(arg[2] || 1);
 
 	if (isNaN(level)) {
@@ -310,17 +318,20 @@ var level = {
 	role: settings.role,
 	run: (message, arg, member) => {
 
-		if (!message.mentions.members.first()) {
-			if (!arg[0]) {
-				message.channel.send(texts.level_help());
-				return;
-			}
+		if (!arg[0]) {
+			message.channel.send(texts.level_help());
+			return;
+		}
 
+		let target_user = util.searchForUser(message, arg[0]);
+
+		if (target_user == null) {
+			message.channel.send(texts.no_user_found(arg[0]));
 			message.channel.send(texts.level_nouser());
 			return;
 		}
 
-		let target = message.mentions.members.first().id;
+		let target = target_user.id;
 
 		let archive = userdata.client.channels.find(c => (c.name == settings.archive_channel));
 		let old_lvl = level_get(target) || 0;

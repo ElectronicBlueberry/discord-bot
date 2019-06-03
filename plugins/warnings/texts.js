@@ -202,3 +202,7 @@ exports.level_archive_increase = (author, target, level, new_level) => {
 exports.level_archive_reset = (author, target, level) => {
 	return `<@${author}> hat die Mahnstufe von <@${target}> von ${level} auf 0 zurückgesetzt`;
 };
+
+exports.no_user_found = (user) => {
+	return `Kein Nutzer namens ${user} gefunden`;
+}
