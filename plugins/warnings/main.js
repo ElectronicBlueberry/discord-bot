@@ -180,6 +180,14 @@ async function attempt_warning_send(message) {
 	let vetos = database.read("meta", "vetos");
 	let approves = database.read("meta", "approves");
 
+	if (vetos == undefined) {
+		vetos = [];
+	}
+
+	if (approves == undefined) {
+		approves = [];
+	}
+
 	if (none_open(message, database.read("global", "current_warning"))) { return; }
 
 	if (approves.length < settings.warning_approve_count) {
