@@ -194,3 +194,11 @@ Nenne ein Mitglied. Beispiel:
 "${config.prefix}${settings.command_level} ${settings.command_level_add} @Nutzername Mahnstufe"
 `;
 };
+
+exports.level_archive_increase = (author, target, level, new_level) => {
+	return `<@${author}> hat die Mahnstufe von <@${target}> von ${level} auf ${new_level} erhöht`;
+};
+
+exports.level_archive_reset = (author, target, level) => {
+	return `<@${author}> hat die Mahnstufe von <@${target}> von ${level} auf 0 zurückgesetzt`;
+};

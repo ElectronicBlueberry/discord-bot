@@ -292,7 +292,7 @@ var warning = {
 var level = {
 	name: settings.command_level,
 	role: settings.role,
-	run: (message, arg) => {
+	run: (message, arg, member) => {
 
 		if (!message.mentions.members.first()) {
 			if (!arg[0]) {
@@ -306,10 +306,14 @@ var level = {
 
 		let target = message.mentions.members.first().id;
 
+		let archive = userdata.client.channels.find(c => (c.name == settings.archive_channel));
+		let old_lvl = level_get(target) || 0;
+
 		switch (arg[0]) {
 			case settings.command_level_reset:
 				level_reset(target);
 				message.channel.send(texts.level_reset(target));
+				archive.send(texts.level_archive_reset(member.id, target, old_lvl));
 				break;
 
 			case settings.command_level_add:
@@ -319,10 +323,11 @@ var level = {
 				}
 				level = level_increase(target, level);
 				message.channel.send(texts.level_increase(target, level));
+				archive.send(texts.level_archive_increase(member.id, target, old_lvl, level));
 				break;
 
 			default:
-				message.channel.send(texts.level_get(target, level_get(target) || 0));
+				message.channel.send(texts.level_get(target, old_lvl));
 				break;
 		}
 	}
