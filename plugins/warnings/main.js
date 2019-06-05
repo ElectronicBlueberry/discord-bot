@@ -242,7 +242,7 @@ async function send_warning_to(message, target) {
 	let message_id = database.read("content", "message");
 	let msg = await message.channel.fetchMessage(message_id);
 	let content = msg.content;
-	content = content.replace(`${config.prefix}${settings.command_warning} ${settings.command_warning_content}`,'');
+	content = content.replace(`${config.prefix}${settings.command_warning} ${settings.command_warning_content} `,'');
 
 	let member = await userdata.client.fetchUser(target);
 	member.send(texts.warning_message(content));
