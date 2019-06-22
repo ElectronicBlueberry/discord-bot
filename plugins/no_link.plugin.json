@@ -1,0 +1,8 @@
+{
+	"name": "Keine Links",
+	"log": "Verbietet dass Gäste Links posten können",
+	"files":
+	[
+		"/no_link/main.js"
+	]
+}
