@@ -16,7 +16,11 @@ function build_message(user) {
 var newUserJoin = {
 	run: (member) => {
 		let channel = find_channel(settings.channel);
-		channel.send( build_message(member));
+		let msg = build_message(member);
+
+		setTimeout(() => {
+			channel.send( msg);
+		}, settings.delay);
 	}
 };
 

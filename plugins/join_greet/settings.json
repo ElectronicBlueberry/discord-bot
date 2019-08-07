@@ -1,4 +1,5 @@
 {
 	"channel": "guest-channel",
-	"greeting": "Wilkommen USERNAME! Lese dir doch bitte die CHANNEL#regeln durch und stelle dich anschließend auf unserem Server vor (CHANNEL#vorstellungen). Nachdem du das getan hast, wird dich ein Mod schnellstmöglich für die anderen Channel freischalten."
+	"greeting": "Wilkommen USERNAME! Lese dir doch bitte die CHANNEL#regeln durch und stelle dich anschließend auf unserem Server vor (CHANNEL#vorstellungen). Nachdem du das getan hast, wird dich ein Mod schnellstmöglich für die anderen Channel freischalten.",
+	"delay": 3000
 }
