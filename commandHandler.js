@@ -10,14 +10,18 @@ module.exports = {
 			return;
 		}
 
-		let arguments = [];
+		let args = [];
 
 		let str = message.content.substr(prefix.length);
-		arguments = [].concat.apply([], str.split('"').map(function(v,i){
+		args = [].concat.apply([], str.split('"').map(function(v,i){
 			return i%2 ? v : v.split(' ')
 		})).filter(Boolean);   // remove prefix and split
 
-		let name = arguments.shift();    // get command name
+		args.forEach((element, index, array) => {
+			array[index] = element.toLowerCase();
+		});
+
+		let name = args.shift();    // get command name
 
 		let command = commandArray.find(cmd => cmd.name === name);
 
@@ -27,7 +31,7 @@ module.exports = {
 
 		// Check for role
 		if (command.role == undefined || command.role == "" || member.roles.get(command.roleId)) {
-			command.run(message, arguments, member);
+			command.run(message, args, member);
 		}
 	},
 
