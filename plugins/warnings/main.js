@@ -1,6 +1,6 @@
 const settings = require('require-reload')('./settings.json');
 const userdata = require("../../userdata.js");
-const db = require("../../database/database.js")
+const db = require("../../database/database.js");
 const texts = require('require-reload')('./texts.js');
 const config = require("../../config.json");
 const util = require("../../utilities/searchForUser.js");
