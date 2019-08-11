@@ -75,7 +75,7 @@ exports.scanPlugins = () => {
 				exports.messageProcessors = exports.messageProcessors.concat(script.messageProcessors);
 			}
 
-			if (script.dmCommands != undefined) {
+			if (script.reactionProcessors != undefined) {
 				exports.reactionProcessors = exports.reactionProcessors.concat(script.reactionProcessors);
 			}
 
