@@ -316,7 +316,7 @@ var warning = {
 var level = {
 	name: settings.command_level,
 	role: settings.role,
-	run: (message, arg, member) => {
+	run: async (message, arg, member) => {
 
 		if (!arg[0]) {
 			message.channel.send(texts.level_help());
@@ -330,7 +330,7 @@ var level = {
 			username = arg[1];
 		}
 
-		let target_user = util.searchForUser(message, username);
+		let target_user = await util.searchForUser(message, username);
 
 		if (target_user == null) {
 			message.channel.send(texts.no_user_found(username));
