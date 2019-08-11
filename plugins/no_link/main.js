@@ -1,7 +1,20 @@
 const settings = require('require-reload')('./settings.json');
 const userdata = require("../../userdata.js");
+const helper = require("../../helperFunctions.js");
+const assert = require('assert');
 
 var role;
+
+var channels = [];
+
+userdata.client.on("ready", async () => {
+	settings.channels.forEach(element => {
+		let id = helper.getIdByName(userdata.client.guilds.first().channels, element);
+		assert(id, `no_link plugin: channel with name ${element} not found`);
+		channels.push(id);
+	});
+});
+
 
 function replaceUsername(message, string) {
 	return string.replace(/USERNAME/gm, `<@${message.member.id}>`);
@@ -35,6 +48,10 @@ var spamData = {};
 
 var scanForUrl = {
 	run: (message) => {
+		if (channels.indexOf(message.channel.id) === -1) {
+			return;
+		}
+
 		if (/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gm.test(message.content)
 			&& !(message.member.roles.get(role.id)))
 		{

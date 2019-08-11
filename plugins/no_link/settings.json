@@ -1,10 +1,14 @@
 {
 	"allowed_role": "♥",
-	"message": "USERNAME, dir fehlen die Berechtigungen um Links zu posten",
-	"linger": 8000,
+	"message": "USERNAME, dir fehlen die Berechtigungen um Links zu posten.",
+	"linger": 30000,
 	"autobann" : {
-		"message": "Achtung USERNAME! Wenn du versuchst zu viele Links zu posten, wirst du automatisch gebannt",
-		"timeout": 15000,
+		"message": "Achtung USERNAME! Wenn du versuchst zu viele Links zu posten, wirst du automatisch gebannt!",
+		"timeout": 32000,
 		"count": 3
-	}
+	},
+	"channels" : [
+		"guest-channel",
+		"vorstellungen"
+	]
 }
