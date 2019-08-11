@@ -38,8 +38,6 @@ module.exports = {
 	// Searches for processor to run according to channel
 	runMessageProcessor: function (processorArray, message, user)
 	{
-		let user = user || message.author;
-
 		if (processorArray == undefined) {
 			return;
 		}
