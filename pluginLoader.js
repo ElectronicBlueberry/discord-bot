@@ -4,7 +4,7 @@ const userdata = require("./userdata.js");
 
 // add role ids for all role elements
 userdata.client.on("ready", () => {	
-	let allCommands = [...exports.channelCommands, ...exports.dmCommands];
+	let allCommands = [...exports.channelCommands, ...exports.dmCommands, ...exports.reactionProcessors];
 
 	allCommands.forEach(command => {
 		if (command.role) {
