@@ -51,7 +51,7 @@ userdata.client.on("message", async (message) => {
 		}
 
 		// Channel Commands
-		let member = userdata.client.guilds.first().members.get(message.author.id);
+		let member = await userdata.client.guilds.first().fetchMember(message.author.id);
 
 		if (member != undefined) {
 			handler.runCommand(loader.dmCommands, message, "", member);
@@ -81,7 +81,11 @@ userdata.client.on('raw', packet => {
     // We don't want this to run on unrelated packets
     if ('MESSAGE_REACTION_ADD' !== packet.t) return;
     // Grab the channel to check the message from
-    const channel = userdata.client.channels.get(packet.d.channel_id);
+	const channel = userdata.client.channels.get(packet.d.channel_id);
+
+	// Exit if channel is unknown
+	if (!channel) return;
+
     // There's no need to emit if the message is cached, because the event will fire anyway for that
     if (channel.messages.has(packet.d.message_id)) return;
     // Since we have confirmed the message is not cached, let's fetch it

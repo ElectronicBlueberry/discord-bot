@@ -1,23 +1,24 @@
-exports.searchForUser = (message, userName) => {
+exports.searchForUser = async (message, userName) => {
 	let user;
-	
+	let members = await message.guild.fetchMembers();
+
 	let regex = /[^a-zA-Z0-9 #]+/;
 	if (userName.includes('#')) {
 		let userTag = userName.replace(regex, '');
-		user = message.guild.members.find(m => userTag == m.user.tag.replace(regex, ''));
+		user = members.find(m => userTag == m.user.tag.replace(regex, ''));
 	}
 	
 	if (user == undefined) {
-		user = message.guild.members.find(m => m.user.username == userName);
+		user = members.find(m => m.user.username == userName);
 	}
 
 	if (user == undefined){
-		user = message.guild.members.find(m => {return (m.nickname == userName || m.displayName == userName);} );
+		user = members.find(m => {return (m.nickname == userName || m.displayName == userName);} );
 	}
 
 	if (user == undefined && userName.includes('<@')) {
 		let userID = userName.replace(/<@|>/g, '');
-		user = message.guild.members.find(m => m.id == userID);
+		user = members.find(m => m.id == userID);
 	}
 
 	return user;
