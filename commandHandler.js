@@ -36,14 +36,16 @@ module.exports = {
 	},
 
 	// Searches for processor to run according to channel
-	runMessageProcessor: function (processorArray, message)
+	runMessageProcessor: function (processorArray, message, user)
 	{
+		let user = user || message.author;
+
 		if (processorArray == undefined) {
 			return;
 		}
 
 		processorArray.forEach(element => {
-			element.run(message);
+			element.run(message, user);
 		});
 	}
 };

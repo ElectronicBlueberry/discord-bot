@@ -72,7 +72,7 @@ userdata.client.on("message", async (message) => {
 });
 
 userdata.client.on("messageReactionAdd", async (messageReaction, user) => {
-	handler.runMessageProcessor(loader.reactionProcessors, messageReaction.message);
+	handler.runMessageProcessor(loader.reactionProcessors, messageReaction, user);
 });
 
 userdata.client.on("guildMemberAdd", (member) => {
