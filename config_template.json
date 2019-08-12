@@ -3,7 +3,8 @@
 	"prefix": "!",
 	"plugin_folder": "plugins",
 	"plugin_suffix": ".plugin.json",
-	"channel_command_blacklist":
+	"mod_role": "Mod",
+	"channel_command_whitelist":
 	[
 
 	]

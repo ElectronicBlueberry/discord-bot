@@ -9,6 +9,8 @@ loader.scanPlugins();
 // Ping Command
 var pingTimestamp = 0;
 
+var modRoleId = 0;
+
 function recievePing(message) {
 	pingTimestamp = message.createdTimestamp;
 	message.channel.send("pong");
@@ -27,6 +29,14 @@ function shutdown()
 
 // Main bot code
 userdata.client.on("ready", () => {
+	let role = userdata.client.guilds.first().roles.find(role => role.name === config.mod_role);
+	if (role === null) {
+		console.log("WARINING!");
+		console.log(`Mod Role "${config.mod_role}" not found! Mod commands will not function`);
+	} else {
+		modRoleId = role.id;
+	}
+
 	console.log(`${userdata.client.user.username} ready`);
 });
 
@@ -61,7 +71,9 @@ userdata.client.on("message", async (message) => {
 	}
 
 	// Run Server commands
-	if (handler.hasPrefix(message, config.prefix) && config.channel_command_whitelist.indexOf(message.channel.name) > -1)
+	if (handler.hasPrefix(message, config.prefix)
+		&& (config.channel_command_whitelist.indexOf(message.channel.name) > -1
+			|| message.member.roles.has(modRoleId)))
 	{
 		handler.runCommand(loader.channelCommands, message, config.prefix, message.member);
 		return;
