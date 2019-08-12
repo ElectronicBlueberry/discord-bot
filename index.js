@@ -72,7 +72,7 @@ userdata.client.on("message", async (message) => {
 
 	// Run Server commands
 	if (handler.hasPrefix(message, config.prefix)
-		&& (config.channel_command_whitelist.includes(message.channel.name) > -1
+		&& (config.channel_command_whitelist.includes(message.channel.name)
 			|| message.member.roles.has(modRoleId)))
 	{
 		handler.runCommand(loader.channelCommands, message, config.prefix, message.member);
