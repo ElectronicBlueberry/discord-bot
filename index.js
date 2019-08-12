@@ -73,7 +73,7 @@ userdata.client.on("message", async (message) => {
 
 userdata.client.on("messageReactionAdd", (messageReaction, user) => {
 	// Do not react on self emissions
-	if (user.id === userdata.client.user.id) return;
+	if (messageReaction.me) return;
 
 	handler.runMessageProcessor(loader.reactionProcessors, messageReaction, user);
 });
