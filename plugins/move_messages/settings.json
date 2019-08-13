@@ -1,0 +1,13 @@
+{
+	"role": "Mod",
+	"move_command": "move",
+	"emoji": [
+		"610234536802123786",
+		"610234536755986482"
+	],
+	"blacklisted_channels": [
+		"mod-channel"
+	],
+	"fail_message": "Ich habe leider keine Nachrichten verschieben können",
+	"move_announcement": "Einige Nachrichten wurden nach TARGET verschoben"
+}

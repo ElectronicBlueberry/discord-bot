@@ -1,0 +1,8 @@
+{
+	"name": "Message Mover",
+	"log": "Erlaubt es Nachrichten in andere Kanäle zu verschieben",
+	"files":
+	[
+		"/move_messages/main.js"
+	]
+}
