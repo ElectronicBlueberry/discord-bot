@@ -109,7 +109,7 @@ async function fetchSelectedMessages() {
 		);
 	}
 
-	messages.filter(m => m.createdTimestamp <= endTimestamp);
+	messages = messages.filter(m => m.createdTimestamp <= endTimestamp);
 
 	return messages.sort((a, b) => {return a.createdTimestamp - b.createdTimestamp;});
 }
