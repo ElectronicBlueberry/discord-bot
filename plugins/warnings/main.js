@@ -24,7 +24,7 @@ function reset_warning() {
 	database.save();
 }
 
-function new_warning(message, arg, member) {
+async function new_warning(message, arg, member) {
 	// unsent warning
 	let current = database.read("global", "current_warning");
 
@@ -47,7 +47,7 @@ function new_warning(message, arg, member) {
 	database.write("global", "total_warning_count", ++count || 0);
 
 	let author = member.id;
-	let target_user = util.searchForUser(message, arg[1]);
+	let target_user =  await util.searchForUser(message, arg[1]);
 
 	if (target_user == null) {
 		message.channel.send(texts.no_user_found(arg[1]));
