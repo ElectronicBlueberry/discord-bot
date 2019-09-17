@@ -103,15 +103,25 @@ async function fetchSelectedMessages() {
 
 	messages.set(message.id, message);
 
-	if (startId !== endId) {
-		messages = messages.concat(
-			await channel.fetchMessages({ after: startId })
-		);
+	if (startId === endId) {
+		return messages;
 	}
 
-	messages = messages.filter(m => m.createdTimestamp <= endTimestamp);
+	let fetching = true;
+	let currentId = startId;
+	while(fetching) {
+		let newMessages = await channel.fetchMessages({ after: currentId });
+		newMessages = newMessages.filter(m => {
+			if (m.createdTimestamp === endTimestamp) {fetching = false;}
+			return m.createdTimestamp <= endTimestamp;
+		});
 
-	return messages.sort((a, b) => {return a.createdTimestamp - b.createdTimestamp;});
+		newMessages = newMessages.sort((a, b) => {return a.createdTimestamp - b.createdTimestamp;});
+		currentId = newMessages.last().id;
+		messages = messages.concat(newMessages);
+	}
+
+	return messages;
 }
 
 function embedFromMessage(message) {
@@ -155,13 +165,14 @@ function embedFromMessage(message) {
 	return embed;
 }
 
-function sendResponse(targetChannel) {
+function sendResponse(targetChannel, count) {
 	let attachment = new discord.Attachment("./img/banner.gif");
-	let message = settings.move_announcement;
+	let message = (count === 1) ? settings.move_single : settings.move_announcement;
 	
 	let sourceChannel = guild.channels.get( database.read("start", "channel"));
 
-	message = message.replace(/TARGET/, targetChannel.toString() );
+	message = message.replace(/TARGET/, targetChannel.toString());
+	message = message.replace(/COUNT/, count.toString());
 
 	sourceChannel.send(message, attachment);
 }
@@ -223,7 +234,7 @@ var moveMessages = {
 				m.delete();
 			});
 			
-			sendResponse(message.channel);
+			sendResponse(message.channel, messages.size);
 			message.delete();
 		} catch(e) {
 			console.log(e);

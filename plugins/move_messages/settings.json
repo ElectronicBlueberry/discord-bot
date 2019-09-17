@@ -9,5 +9,6 @@
 		"mod-channel"
 	],
 	"fail_message": "Ich habe leider keine Nachrichten verschieben können",
-	"move_announcement": "Einige Nachrichten wurden nach TARGET verschoben"
+	"move_announcement": "COUNT Nachrichten wurden nach TARGET verschoben",
+	"move_single": "Eine Nachricht wurde nach TARGET verschoben"
 }
