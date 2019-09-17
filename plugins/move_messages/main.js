@@ -120,11 +120,28 @@ function embedFromMessage(message) {
 	if (message.author.id === userdata.client.user.id && message.embeds.length === 1) {
 		embed = message.embeds[0];
 	} else {
-		embed = embed
-			.setAuthor(message.member.displayName, message.author.avatarURL)
-			.setColor(message.member.displayColor)
-			.setDescription(message.content)
-			.setTimestamp(message.createdTimestamp)
+		if (message.member !== null) {
+			embed = embed
+				.setAuthor(message.member.displayName, message.author.avatarURL)
+				.setColor(message.member.displayColor);
+		} else if (message.author !== null) {
+			embed = embed
+				.setAuthor(message.author.username, message.author.avatarURL)
+				.setColor('#ffffff');
+		} else {
+			embed = embed
+				.setAuthor("Unbekannte Person");
+		}
+
+		if (message.content) {
+			embed = embed
+				.setDescription(message.content);
+		} else {
+			embed = embed
+				.setDescription("Gelöschte Nachricht");
+		}
+
+		embed = embed.setTimestamp(message.createdTimestamp);
 	}
 
 	let attachment = message.attachments.first();
