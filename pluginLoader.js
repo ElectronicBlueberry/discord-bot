@@ -1,6 +1,7 @@
 const fs = require('fs');
 const config = require("./config.json");
 const userdata = require("./userdata.js");
+const helper = require("./helperFunctions.js");
 
 // add role ids for all role elements
 userdata.client.on("ready", () => {	
@@ -8,16 +9,7 @@ userdata.client.on("ready", () => {
 
 	allCommands.forEach(command => {
 		if (command.role) {
-			
-			let role = userdata.client.guilds.first().roles.find(role => role.name === command.role);
-			if (role === null) {
-				command.roleId = null;
-
-				console.log("WARINING!");
-				console.log(`Role "${command.role}" not found!`);
-			} else {
-				command.roleId = role.id;
-			}
+			command.roleId = helper.getRoleByName(userdata.client.guilds.first().roles, command.role);
 		}
 	});
 });
