@@ -1,0 +1,9 @@
+{
+	"role": "Mod",
+	"user_role": "♥",
+	"freeze_command": "freeze",
+	"unfreeze_command": "unfreeze",
+	"freeze_message": "Der Channel wurde temporär von einem Mod eingefroren.",
+	"unfreeze_message": "Der Channel ist wieder aufgetaut und ihr könnt wieder schreiben.",
+	"cannot_freeze": "Channel konnte nicht gefrohren werden!"
+}

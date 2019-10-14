@@ -1,0 +1,8 @@
+{
+	"name": "Chennel einfrieren",
+	"log": "Erlaubt es Mods temporär chanel einzufrieren",
+	"files":
+	[
+		"/freeze/main.js"
+	]
+}
