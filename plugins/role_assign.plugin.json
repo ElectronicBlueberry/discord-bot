@@ -1,0 +1,8 @@
+{
+	"name": "Rolle zuweisen",
+	"log": "Erlaubt Nutzern sich selbst bestimmte Rollen zuzuweisen",
+	"files":
+	[
+		"/role_assign/main.js"
+	]
+}

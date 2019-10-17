@@ -1,0 +1,18 @@
+{
+	"role": "♥",
+	"role_command": "pronomen",
+
+	"role_set_message": "Du hast nun folgende Pronomen:",
+	"role_cleared_message": "Du hast nun keine Pronomen Rollen mehr!",
+
+	"wrong_arguments": "Bitte nenne eins, oder mehrere, der folgenden Pronomen direkt hinter dem Befehl:",
+
+	"roles":
+	[
+		{"name": "keine", "role": "keine Pronomen"},
+		{"name": "es", "role": "es"},
+		{"name": "they", "role": "they / them"},
+		{"name": "sie", "role": "sie / ihr"},
+		{"name": "er", "role": "er / ihm"}
+	]
+}
