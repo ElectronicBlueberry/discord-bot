@@ -146,7 +146,7 @@ function embedFromMessage(message) {
 		if (message.content) {
 			embed = embed
 				.setDescription(message.content);
-		} else {
+		} else if (!message.attachments.first()) {
 			embed = embed
 				.setDescription("Gelöschte Nachricht");
 		}
