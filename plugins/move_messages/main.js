@@ -5,10 +5,12 @@ const db = require("../../database/database.js");
 const discord  = require("discord.js");
 
 var guild;
+var logChannel;
 var database = new db.Database("MessageMover");
 
 userdata.client.on("ready", async () => {
 	guild = userdata.client.guilds.first();
+	logChannel = guild.channels.find(e => e.name === settings.audit_log_channel);
 });
 
 function setMessage(message, pos) {
@@ -243,7 +245,33 @@ var moveMessages = {
 	}
 }
 
+var deleteMessages = {
+	name: settings.delete_command,
+	role: settings.role,
+	run: async (message) => {
+		try {
+			let messages = await fetchSelectedMessages();
+			let embeds = messages.map(m => {
+				return embedFromMessage(m);
+			});
+
+			for (let i = 0; i < embeds.length; i++) {
+				await logChannel.send("", { embed: embeds[i] });
+			}
+
+			messages.tap(m => {
+				m.delete();
+			});
+
+			message.delete();
+		} catch (e) {
+			console.log(e);
+			logChannel.send(settings.delete_fail_message);
+		}
+	}
+}
+
 module.exports = {
 	reactionProcessors: [markMessage],
-	channelCommands: [moveMessages]
+	channelCommands: [moveMessages, deleteMessages]
 }

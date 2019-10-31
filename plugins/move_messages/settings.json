@@ -10,5 +10,9 @@
 	],
 	"fail_message": "Ich habe leider keine Nachrichten verschieben können",
 	"move_announcement": "COUNT Nachrichten wurden nach TARGET verschoben",
-	"move_single": "Eine Nachricht wurde nach TARGET verschoben"
+	"move_single": "Eine Nachricht wurde nach TARGET verschoben",
+
+	"delete_command": "delete",
+	"audit_log_channel": "audit-log",
+	"delete_fail_message": "Löschung der Nachrichten fehlgeschlagen!"
 }
