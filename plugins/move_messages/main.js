@@ -179,28 +179,34 @@ function sendResponse(targetChannel, count) {
 	sourceChannel.send(message, attachment);
 }
 
+async function checkReactionRole(reaction, user, validEmoji) {
+	let member = await guild.fetchMember(user);
+
+	// terminate if
+	if (!member	// member isnt found
+		|| reaction.message.guild.id !== guild.id // reaction isnt sent on server
+		|| !validEmoji.includes(reaction.emoji.id)// reaction is from another emoji
+	) {
+		return false;
+	}
+
+	// remove emoji if user has wrong role
+	// or channel is blacklisted
+	if (!member.roles.get(markMessage.roleId)
+		|| settings.blacklisted_channels.includes(reaction.message.channel.name)
+	) {
+		reaction.remove(user);
+		return false;
+	}
+
+	return true;
+}
+
 var markMessage = {
 	role: settings.role,
 	roleId: 0,
 	run: async (reaction, user) => {
-		let member = await guild.fetchMember(user);
-
-		// terminate if
-		if (!member	// member isnt found
-			|| reaction.message.guild.id !== guild.id // reaction isnt sent on server
-			|| !settings.emoji.includes(reaction.emoji.id)// reaction is from another emoji
-		) {
-			return;
-		}
-
-		// remove emoji if user has wrong role
-		// or channel is blacklisted
-		if (!member.roles.get(markMessage.roleId)
-			|| settings.blacklisted_channels.includes(reaction.message.channel.name)
-		) {
-			reaction.remove(user);
-			return;
-		}
+		if (!(await checkReactionRole(reaction, user, settings.emoji))) return;
 
 		// Check if emoji, is start or stop emoji
 		let pos = settings.emoji.indexOf(reaction.emoji.id);
@@ -255,6 +261,8 @@ var deleteMessages = {
 				return embedFromMessage(m);
 			});
 
+			await logChannel.send(`${settings.log_message} <@${message.member.id}>`);
+
 			for (let i = 0; i < embeds.length; i++) {
 				await logChannel.send("", { embed: embeds[i] });
 			}
@@ -271,7 +279,26 @@ var deleteMessages = {
 	}
 }
 
+var deleteSingle = {
+	role: settings.role,
+	roleId: 0,
+	run: async (reaction, user) => {
+		try {
+			if (!(await checkReactionRole(reaction, user, settings.delete_emoji))) return;
+
+			let message = reaction.message;
+			let embed = embedFromMessage(message);
+
+			await logChannel.send(`${settings.log_message} <@${reaction.users.first().id}>`, embed);
+			message.delete();
+		} catch (e) {
+			console.log(e);
+			logChannel.send(settings.delete_fail_message);
+		}
+	}
+}
+
 module.exports = {
-	reactionProcessors: [markMessage],
+	reactionProcessors: [markMessage, deleteSingle],
 	channelCommands: [moveMessages, deleteMessages]
 }

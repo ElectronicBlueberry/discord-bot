@@ -12,7 +12,9 @@
 	"move_announcement": "COUNT Nachrichten wurden nach TARGET verschoben",
 	"move_single": "Eine Nachricht wurde nach TARGET verschoben",
 
+	"delete_emoji": ["639475986009948161"],
 	"delete_command": "delete",
 	"audit_log_channel": "audit-log",
-	"delete_fail_message": "Löschung der Nachrichten fehlgeschlagen!"
+	"delete_fail_message": "Löschung der Nachrichten fehlgeschlagen!",
+	"log_message": "Gelöscht von:"
 }
