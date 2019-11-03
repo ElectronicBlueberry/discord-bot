@@ -1,18 +1,93 @@
 {
-	"role": "♥",
-	"role_command": "pronomen",
+	"topics" : [
+		{
+			"role": "♥",
+			"role_command": "pronomen",
 
-	"role_set_message": "Du hast nun folgende Pronomen:",
-	"role_cleared_message": "Du hast nun keine Pronomen Rollen mehr!",
+			"role_set_message": "Du hast nun folgende Pronomen: ROLES",
+			"role_cleared_message": "Du hast nun keine Pronomen Rollen mehr!",
 
-	"wrong_arguments": "Bitte nenne eins, oder mehrere, der folgenden Pronomen direkt hinter dem Befehl:",
+			"wrong_arguments": "Bitte nenne eins, oder mehrere, der folgenden Pronomen direkt hinter dem Befehl: ROLES",
 
-	"roles":
-	[
-		{"name": "keine", "role": "keine Pronomen"},
-		{"name": "es", "role": "es"},
-		{"name": "they", "role": "they / them"},
-		{"name": "sie", "role": "sie / ihr"},
-		{"name": "er", "role": "er / ihm"}
+			"roles":
+			[
+				{"name": "keine", "role": "keine Pronomen"},
+				{"name": "es", "role": "es"},
+				{"name": "they", "role": "they / them"},
+				{"name": "sie", "role": "sie / ihr"},
+				{"name": "er", "role": "er / ihm"}
+			]
+		},
+		{
+			"role": "♥",
+			"role_command": "gegend",
+
+			"role_set_message": "Du hast folgende Gegend angegeben: ROLES",
+			"role_cleared_message": "Du hast nun keine Gegend mehr angegeben!",
+
+			"wrong_arguments": "Bitte nenne ein Bundesland (ausgeschrieben oder abgekürzt) hinter dem Befehl.\nRichtige Schreibweisen und Abkürzungen der Bundesländer findest du hier:\n(DE) https://bit.ly/36qQwp7\n(AUT) https://bit.ly/2r1UcNB\nFalls du deine Gegend weiter spezifizieren möchtest, füge hinter dem Befehl zusätzlich \"Nord\", \"Süd\", \"West\", \"Ost\" oder \"Mitte\" hinzu.",
+
+			"roles":
+			[
+				{"name": "Brandenburg", "role": "Brandenburg / Berlin"},
+				{"name": "Berlin", "role": "Brandenburg / Berlin"},
+				{"name": "BB", "role": "Brandenburg / Berlin"},
+				{"name": "BE", "role": "Brandenburg / Berlin"},
+				{"name": "BW", "role": "Baden-Württemberg"},
+				{"name": "Baden-Württemberg", "role": "Baden-Württemberg"},
+				{"name": "BY", "role": "Bayern"},
+				{"name": "Bayern", "role": "Bayern"},
+				{"name": "HB", "role": "Niedersachsen / Bremen"},
+				{"name": "Bremen", "role": "Niedersachsen / Bremen"},
+				{"name": "Niedersachsen", "role": "Niedersachsen / Bremen"},
+				{"name": "NI", "role": "Niedersachsen / Bremen"},
+				{"name": "Hessen", "role": "Hessen"},
+				{"name": "HE", "role": "Hessen"},
+				{"name": "Schleswig-Holstein", "role": "Schleswig-Holstein / Hamburg"},
+				{"name": "SH", "role": "Schleswig-Holstein / Hamburg"},
+				{"name": "HH", "role": "Schleswig-Holstein / Hamburg"},
+				{"name": "Hamburg", "role": "Schleswig-Holstein / Hamburg"},
+				{"name": "MV", "role": "Mecklenburg-Vorpommern"},
+				{"name": "Mecklenburg-Vorpommern", "role": "Mecklenburg-Vorpommern"},
+				{"name": "NW", "role": "NRW"},
+				{"name": "NRW", "role": "NRW"},
+				{"name": "Nordrhein-Westfalen", "role": "NRW"},
+				{"name": "RP", "role": "Rheinland-Pfalz"},
+				{"name": "Rheinland-Pfalz", "role": "Rheinland-Pfalz"},
+				{"name": "Saarland", "role": "Saarland"},
+				{"name": "SL", "role": "Saarland"},
+				{"name": "Sachsen", "role": "Sachsen"},
+				{"name": "SN", "role": "Sachsen"},
+				{"name": "Sachsen-Anhalt", "role": "Sachsen-Anhalt"},
+				{"name": "SA", "role": "Sachsen-Anhalt"},
+				{"name": "ST", "role": "Sachsen-Anhalt"},
+				{"name": "Thüringen", "role": "Thüringen"},
+				{"name": "TH", "role": "Thüringen"},
+				{"name": "Nord", "role": "Nord"},
+				{"name": "Süd", "role": "Süd"},
+				{"name": "West", "role": "West"},
+				{"name": "Ost", "role": "Ost"},
+				{"name": "Mitte", "role": "Mitte"},
+				{"name": "Burgenland", "role": "Burgenland"},
+				{"name": "Bgld", "role": "Burgenland"},
+				{"name": "Kärnten", "role": "Kärnten"},
+				{"name": "Ktn.", "role": "Kärnten"},
+				{"name": "Niederösterreich", "role": "Niederösterreich / Wien"},
+				{"name": "Wien", "role": "Niederösterreich / Wien"},
+				{"name": "W", "role": "Niederösterreich / Wien"},
+				{"name": "NÖ", "role": "Niederösterreich / Wien"},
+				{"name": "Oberösterreich", "role": "Oberösterreich"},
+				{"name": "OÖ", "role": "Oberösterreich"},
+				{"name": "Salzburg", "role": "Salzburg"},
+				{"name": "Sbg.", "role": "Salzburg"},
+				{"name": "Steiermark", "role": "Steiermark"},
+				{"name": "Tirol", "role": "Tirol"},
+				{"name": "T", "role": "Tirol"},
+				{"name": "Vorarlberg", "role": "Vorarlberg"},
+				{"name": "Vbg.", "role": "Vorarlberg"},
+				{"name": "Schweiz", "role": "Schweiz"},
+				{"name": "CH", "role": "Schweiz"}
+			]
+		}
 	]
 }

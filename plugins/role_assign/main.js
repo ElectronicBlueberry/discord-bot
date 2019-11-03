@@ -1,33 +1,36 @@
 const settings = require('require-reload')('./settings.json');
 
 // Builda A String to send to users of a set of roles
-function buildRoleString(array)
+function build_role_string(array)
 {
-	var message = "";
+	let message = "";
+	let set = [];
 
 	for (let i = 0; i < array.length; i++)
 	{
+		if (set.includes( array[i].role)) continue;
+		set.push(array[i].role);
 		message += "\n";
-		message += array[i].name;
+		message += array[i].role;
 	}
 
 	return message;
 }
 
 // Finds a role by its name in the settings
-function find_role(name)
+function find_role(name, topic)
 {
-	let role_obj = settings.roles.find(e => {
-		return e.name === name;
+	let role_obj = topic.roles.find(e => {
+		return e.name.toLowerCase() === name;
 	});
 
 	return role_obj;
 }
 
 // attempts to find a role on the server and set it. 0 = failed, 1 = sucess
-function addRole(message, role_name)
+function add_role(message, role_name, topic)
 {
-	let role_obj = find_role(role_name);
+	let role_obj = find_role(role_name, topic);
 	if (role_obj == undefined) {
 		return null;
 	}
@@ -54,46 +57,60 @@ function removeRole(message, role_name)
 	return 1;
 }
 
-var set_role = {
-	name: settings.role_command,
-	role: settings.role,
-	run: (message, arguments) => {
-		// Roles that were set with this command
-		let set_roles = [];
+function build_response_string(message, roles) {
+	return message.replace(/ROLES/gm, `${build_role_string(roles)}`);
+}
 
-		for (const role_name of arguments) {
-			let role_obj = addRole(message, role_name);
+function set_role(message, arguments, topic) {
+	// Roles that were set with this command
+	let set_roles = [];
 
-			if (role_obj !== null) {
-				set_roles.push(role_obj);
-			}
-		}
+	for (const role_name of arguments) {
+		let role_obj = add_role(message, role_name, topic);
 
-		// None of the provided roles were sucessfully set
-		if (arguments.length !== 0 && set_roles.length === 0) {
-			message.channel.send(settings.wrong_arguments + buildRoleString(settings.roles));
-			return;
-		}
-
-		let remove_count = 0;
-
-		// Clear all other roles
-		for (const role_obj of settings.roles) {
-			if (!set_roles.includes(role_obj)) {
-				remove_count += removeRole(message, role_obj.role);
-			}
-		}
-
-		if (remove_count === 0 && arguments.length === 0) {
-			message.channel.send(settings.wrong_arguments + buildRoleString(settings.roles));
-		} else if (set_roles.length !== 0) {
-			message.channel.send(settings.role_set_message + buildRoleString(set_roles));
-		} else {
-			message.channel.send(settings.role_cleared_message);
+		if (role_obj !== null) {
+			set_roles.push(role_obj);
 		}
 	}
-};
+
+	// None of the provided roles were sucessfully set
+	if (arguments.length !== 0 && set_roles.length === 0) {
+		message.channel.send( build_response_string(topic.wrong_arguments, topic.roles));
+		return;
+	}
+
+	let remove_count = 0;
+
+	// Clear all other roles
+	for (const role_obj of topic.roles) {
+		if (!set_roles.find(v => v.role === role_obj.role)) {
+			remove_count += removeRole(message, role_obj.role);
+		}
+	}
+
+	if (remove_count === 0 && arguments.length === 0) {
+		message.channel.send( build_response_string(topic.wrong_arguments, topic.roles));
+	} else if (set_roles.length !== 0) {
+		message.channel.send( build_response_string(topic.role_set_message, set_roles));
+	} else {
+		message.channel.send( build_response_string(topic.role_cleared_message, topic.roles));
+	}
+}
+
+var commands = [];
+
+settings.topics.forEach((t) => {
+	commands.push(
+		{
+			name: t.role_command,
+			role: t.role,
+			run: (msg, args) => {
+				set_role(msg, args, t);
+			}
+		}
+	);
+});
 
 module.exports = {
-	channelCommands: [set_role]
+	channelCommands: commands
 };
