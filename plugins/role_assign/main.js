@@ -21,7 +21,7 @@ function build_role_string(array)
 function find_role(name, topic)
 {
 	let role_obj = topic.roles.find(e => {
-		return e.name.toLowerCase() === name;
+		return e.name.toLowerCase() === name.replace(/[.,]/g, '');
 	});
 
 	return role_obj;
