@@ -298,7 +298,66 @@ var deleteSingle = {
 	}
 }
 
+var backupMessages = {
+	name: settings.backup_command,
+	role: settings.role,
+	run: async (message) => {
+		try {
+			message.delete();
+
+			let messages = await fetchSelectedMessages();
+
+			// remove emojis
+			let first = messages.first();
+			let last = messages.last();
+
+			let reactions = first.reactions.concat(last.reactions);
+			reactions = reactions.filter(reaction => (reaction.emoji.id === settings.emoji[0] || reaction.emoji.id === settings.emoji[1]));
+			reactions.tap(async reaction => {
+				let users = await reaction.fetchUsers();
+				users.tap(user => {
+					reaction.remove(user);
+				});
+			});
+			
+
+			let embeds = messages.map(m => {
+				return embedFromMessage(m);
+			});
+
+			await logChannel.send(`${settings.log_message_backup} <@${message.member.id}>`);
+
+			for (let i = 0; i < embeds.length; i++) {
+				await logChannel.send("", { embed: embeds[i] });
+			}
+		} catch (e) {
+			console.log(e);
+			logChannel.send(settings.backup_fail_message);
+		}
+	}
+}
+
+var backupSingle = {
+	role: settings.role,
+	roleId: 0,
+	run: async (reaction, user) => {
+		try {
+			if (!(await checkReactionRole(reaction, user, settings.backup_emoji))) return;
+
+			let message = reaction.message;
+			let embed = embedFromMessage(message);
+
+			reaction.remove(user);
+
+			await logChannel.send(`${settings.log_message_backup} <@${reaction.users.first().id}>`, embed);
+		} catch (e) {
+			console.log(e);
+			logChannel.send(settings.backup_fail_message);
+		}
+	}
+}
+
 module.exports = {
-	reactionProcessors: [markMessage, deleteSingle],
-	channelCommands: [moveMessages, deleteMessages]
+	reactionProcessors: [markMessage, deleteSingle, backupSingle],
+	channelCommands: [moveMessages, deleteMessages, backupMessages]
 }

@@ -16,5 +16,10 @@
 	"delete_command": "delete",
 	"audit_log_channel": "audit-log",
 	"delete_fail_message": "Löschung der Nachrichten fehlgeschlagen!",
-	"log_message": "Gelöscht von:"
+	"log_message": "Gelöscht von:",
+
+	"backup_emoji": ["649973254668288000"],
+	"backup_command": "copy",
+	"backup_fail_message": "Kopieren der Nachrichten fehlgeschlagen!",
+	"log_message_backup": "Kopiert von:"
 }
