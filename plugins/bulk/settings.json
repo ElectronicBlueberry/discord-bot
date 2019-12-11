@@ -1,0 +1,13 @@
+{
+	"bulk_command": "bulk",
+	"role": "Mod",
+	"allow": "allow",
+	"deny": "deny",
+	"delete": "delete",
+
+	"noArgs": "Verwendung: !bulk rolle [allow/deny/delete] permission",
+	"noRole": "Keine Rolle mit diesem Namen gefunden",
+	"noPerm": "Keine Permission mit diesem Namen gefunden",
+	"noOp": "Unbekannte Operation! Erlaubte Operationen: [allow/deny/delete]",
+	"sucess": "Rolle für alle Kanäle aktualisiert"
+}

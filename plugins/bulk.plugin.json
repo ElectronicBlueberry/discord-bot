@@ -1,0 +1,8 @@
+{
+	"name": "Bulk Role",
+	"log": "Erlaubt es Mods Berechtigungen für alle Channel gleichzeitig zu ändern",
+	"files":
+	[
+		"/bulk/main.js"
+	]
+}
