@@ -7,11 +7,13 @@ var bulk = {
 	run: async (message, arguments) => {
 		let rName = arguments[0];
 		let operation = arguments[1];
-		let perm = arguments[2].toUpperCase();
-		if (!operation || !rName) {
+		let perm = arguments[2];
+		if (!operation || !rName || !perm) {
 			message.channel.send(settings.noArgs);
 			return;
-		}		
+		}
+
+		perm = perm.toUpperCase();
 
 		let role = message.guild.roles.find(r => r.name.toLowerCase() === rName);
 		if (!role) {
