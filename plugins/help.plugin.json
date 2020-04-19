@@ -1,0 +1,8 @@
+{
+	"name": "Hilfetext",
+	"log": "Ein Hilfe-Befehl für Nutzer",
+	"files":
+	[
+		"/help/main.js"
+	]
+}

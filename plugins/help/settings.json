@@ -1,0 +1,10 @@
+{
+	"role": "♥",
+	"commands": [
+		"help",
+		"hilfe",
+		"commands",
+		"befehle"
+	],
+	"help_message": "Zur Zeit gibt es folgende Befehle: „!pronomen“, „!gegend“, „!join“ und „!leave“.\nUm genaueres über einen dieser Befehle zu erfahren, postet ihn im #command-Channel oder lest den entsprechenden Beitrag in #info."
+}
