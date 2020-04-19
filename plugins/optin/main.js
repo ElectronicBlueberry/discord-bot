@@ -31,42 +31,57 @@ function leave_all(message)
 	message.channel.send(settings.all_leave_message);
 }
 
-function find_role(name)
+function find_channel(name)
 {
 	let channel = settings.channels.find(e => {
 		return e.name === name;
 	});
 
-	return channel.role;
+	return channel;
 }
 
 // attempts to leave channel and returns sucess
 function leave_channel(message, channel)
 {
-	let role = message.member.roles.find(r => r.name === find_role(channel));
+	let c = find_channel(channel);
+	let role = message.guild.roles.find(r => r.name === c.role);
+	//let role = message.member.roles.find(r => r.name === c.role);
 
 	if (role == undefined) {
 		return false;
 	}
 
-	message.member.removeRole(role);
+	if (!c.optout) {
+		if (!message.member.roles.has(role.id)) {
+			return false;
+		}
+
+		message.member.removeRole(role);
+	} else {
+		message.member.addRole(role);
+	}
 	return true;
 }
 
-// attempts fo join channel and returns sucess as 0: no such channel, 1: allready joined, 2: sucess
+// attempts to join channel and returns sucess as 0: no such channel, 1: allready joined, 2: sucess
 function join_channel(message, channel)
 {
-	let role = message.guild.roles.find(r => r.name === find_role(channel));
+	let c = find_channel(channel);
+	let role = message.guild.roles.find(r => r.name === c.role);
 
 	if (role == undefined) {
 		return 0;
 	}
 
-	if (message.member.roles.find(r => r == role)) {
-		return 1;
-	}
+	if (c.optout) {
+		message.member.removeRole(role);
+	} else {
+		if (message.member.roles.has(role)) {
+			return 1;
+		}
 
-	message.member.addRole(role);
+		message.member.addRole(role);
+	}
 	return 2;
 }
 

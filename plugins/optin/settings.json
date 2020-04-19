@@ -14,7 +14,8 @@
 	"channels":
 	[
 		{"name": "diskussionen", "role": "disk"},
-		{"name": "politik", "role": "pol"}
+		{"name": "politik", "role": "pol"},
+		{"name": "guest", "role": "hide-me", "optout": true}
 	],
 	
 	"all_argument": "all",
